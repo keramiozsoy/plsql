@@ -6,7 +6,7 @@ Plsql kısaltmasının açılımı şu şekildedir.
 procedural language extension to structured query language
 ```
 
--- Konu 1 --
+## konu 1
 
 herhangi bir ismi olmayan begin ile başlayıp end ile biten yapılardır
 sql bir dil değil motordur. veri manipulasyonu yapılır.
