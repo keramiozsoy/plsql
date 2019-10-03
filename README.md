@@ -53,3 +53,11 @@ BEGIN
  	dbms_output.put_line(l_hire_date);
 END;
 ```
+
+## Konu 3
+  degisken isimlendirme standartı oluşturabiliririz.
+```
+ l_emp_no     -- l lokal değişken 
+ lv_emp_name  -- l lokal , v varchar 
+ ld_hire_date -- l lokal , d date
+```
