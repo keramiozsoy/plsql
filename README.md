@@ -61,3 +61,22 @@ END;
  lv_emp_name  -- l lokal , v varchar 
  ld_hire_date -- l lokal , d date
 ```
+
+## Konu 4
+ Tablodaki alanların tipini bilmeden değişken oluşturmak
+ Tablodaki alanın tipi ne ise değişkenin tipi otomatik o yapılmış oluyor.
+ Tablodaki alan tipleri var, degisken tipleri var. Bu ikisi aynı olabilir.
+ 
+``` 
+DECLARE
+	ln_emp_no employees.employee_id%TYPE;
+	ld_hire_date employees.hire_date%TYPE;
+BEGIN
+	dbms_output.put_line('----');
+	ln_emp_no := 11;
+	ld_hire_date := SYSDATE;
+
+	dbms_output.put_line(ln_emp_no);
+	dbms_output.put_line(ld_hire_date);
+END;
+```
