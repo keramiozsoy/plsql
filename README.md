@@ -80,3 +80,26 @@ BEGIN
 	dbms_output.put_line(ld_hire_date);
 END;
 ```
+
+## Konu 5
+
+anonymous block içinde block kullanımı
+istenildigi kadar iç içe kullanılabilir.
+
+```
+DECLARE
+	l_var_1 NUMBER DEFAULT 10;
+	l_var_2 NUMBER DEFAULT 20;
+	l_result NUMBER;
+BEGIN
+	dbms_output.put_line(' ----- ');
+	l_result := l_var_1 * l_var_2;
+	dbms_output.put_line(l_result);
+	DECLARE
+		l_var_3 NUMBER DEFAULT 30;
+	BEGIN
+		dbms_output.put_line(l_var_3);
+	END ;
+
+END isim_verdim_adi_dis_blok_olsun;
+```
