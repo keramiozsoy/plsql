@@ -103,3 +103,19 @@ BEGIN
 
 END isim_verdim_adi_dis_blok_olsun;
 ```
+
+
+## Konu 6 
+-- into kullanımı
+
+-- sorguların sonucunu alıp kullanmak için kullanırız
+
+-- NOT 
+-- plsql içinde sql çalıştırıldığında dönen değeri tutacak bir yer yoktur.
+-- Bu nedenle dönen değeri bir değişkene veya bir collection a atmalıyız ki kullanabilelim.
+-- deneyip hatayı alalım.
+```
+BEGIN
+	SELECT * FROM DEPARTMENTS;
+END;
+```
