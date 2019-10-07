@@ -154,4 +154,8 @@ BEGIN
 
 	dbms_output.put_line(v_1 ||'-'|| v_2 ||'-'||v_3 );
 END;
+
+
+
+DROP SEQUENCE testseq;
 ```
