@@ -119,3 +119,39 @@ BEGIN
 	SELECT * FROM DEPARTMENTS;
 END;
 ```
+
+
+## Konu 7
+into kullanımı
+
+## Konu 8
+
+Tek kayıt veya tek alan getiren sorguların sonucunu bir değişkene atayabiliyoruz.Çok kayıt gelirse hata alırız.
+
+```
+CREATE SEQUENCE testseq;
+
+SELECT * FROM DEPARTMENTS;
+DECLARE 
+	dept_no DEPARTMENTS.department_id%TYPE;
+BEGIN
+	SELECT testseq.nextval 
+		INTO dept_no
+	FROM dual;
+	
+	dbms_output.put_line('---');
+	dbms_output.put_line(dept_no);
+END;
+
+DECLARE
+	v_1 NUMBER;
+	v_2 NUMBER;
+	v_3 NUMBER;
+BEGIN
+	SELECT 1,2,3
+	INTO v_1,v_2,v_3
+	FROM dual;
+
+	dbms_output.put_line(v_1 ||'-'|| v_2 ||'-'||v_3 );
+END;
+```
