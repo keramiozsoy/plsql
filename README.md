@@ -162,3 +162,29 @@ BEGIN
 END;
 
 ```
+
+## Konu 9
+-- kontrol yapıları
+-- if elsif else
+
+```
+DECLARE
+	ln_emp_count NUMBER ;
+BEGIN
+	
+	SELECT count(*)
+		INTO ln_emp_count
+	FROM
+	EMPLOYEES;
+	
+	IF  ln_emp_count < 20
+		THEN
+			dbms_output.put_line('20 den az çalısan var');
+	ELSIF ln_emp_count BETWEEN 21 AND 50
+		THEN
+			dbms_output.put_line('20 ile 50 arasında çalışan var');
+	ELSE
+			dbms_output.put_line('50  den fazla çalışan var');
+	END IF;
+END;
+```
