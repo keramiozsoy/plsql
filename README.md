@@ -122,6 +122,7 @@ END;
 
 
 ## Konu 7
+
 into kullanımı
 
 ```
@@ -165,6 +166,7 @@ END;
 
 ## Konu 9
 -- kontrol yapıları
+
 -- if elsif else
 
 ```
