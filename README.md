@@ -190,3 +190,18 @@ BEGIN
 	END IF;
 END;
 ```
+
+## konu 10
+-- CASE WHEN yapısı
+-- hem plsql de hemde sql de case when yapısı mevcut. 
+-- sql de case when
+```
+SELECT e.employee_id,
+  CASE e.first_name 
+       WHEN 'Steven' THEN 'user is GOOD'
+       WHEN 'Neena' THEN 'user is BAD..'
+       WHEN 'Lex' THEN 'user is AWESOME..'
+       ELSE 'user UNKNOWN'
+  END case_kolonu
+FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
+```
