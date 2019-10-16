@@ -205,3 +205,36 @@ SELECT e.employee_id,
   END case_kolonu
 FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
 ```
+-- sql de decode
+-- sadece sql de kullanıllr plsql de kullanılmaz. case when daha hızlı ve performanslıdır.
+-- sadece eşitir işlemi yapılabilir ,büyük küçük gibi karşılaştırmalar yapılamaz.
+```
+SELECT e.employee_id,
+  DECODE( e.first_name ,
+        'Steven' , 'user is GOOD' ,
+       	 'Neena' , 'user is BAD..' , 
+       	 'Lex' , 'user is AWESOME..',
+       	 'user UNKNOWN' ) case_kolonu
+FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
+```
+
+-- plsql de case when
+```
+DECLARE
+	ln_job_count NUMBER ;
+	lv_result varchar(50);
+BEGIN
+	
+	SELECT count(*)
+		INTO ln_job_count
+	FROM JOBS;
+	
+	
+	lv_result := CASE  
+					WHEN ln_job_count = 4 AND  ln_job_count <= 10--BETWEEN 4 AND 10	
+						THEN '4 ile 10 tane iş var'
+					ELSE '10  den fazla iş var'
+				END;
+	dbms_output.put_line(lv_result);
+END;
+```
