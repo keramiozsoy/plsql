@@ -230,11 +230,11 @@ BEGIN
 	FROM JOBS;
 	
 	
-	lv_result := CASE  
-					WHEN ln_job_count = 4 AND  ln_job_count <= 10--BETWEEN 4 AND 10	
-						THEN '4 ile 10 tane iş var'
-					ELSE '10  den fazla iş var'
-				END;
+	lv_result := CASE 
+			WHEN ln_job_count = 4 AND  ln_job_count <= 10--BETWEEN 4 AND 10	
+				THEN '4 ile 10 tane iş var'
+			ELSE '10  den fazla iş var'
+			END;
 	dbms_output.put_line(lv_result);
 END;
 ```
