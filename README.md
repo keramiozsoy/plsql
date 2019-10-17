@@ -268,7 +268,7 @@ END;
 	-- while..loop konusu (EN AZ TERCIH EDILEN)
 	-- programlamada while gibi çalışır.
 
-
+```
 DECLARE
 	ln_result NUMBER DEFAULT 0;
 BEGIN
@@ -287,3 +287,4 @@ BEGIN
 
 END;
 
+```
