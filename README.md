@@ -246,7 +246,7 @@ END;
 * bir veriyi doldurmak istiyorsak mutlaka sql ile doldurmalıyız loop ile döngü doldurulursa performans kaybıdır.
 
 
-** döngüler
+## konu 11.1 döngüler
 	* loop konusu (TERCIH EDILEN)
 	* programlamada do..while gibi çalışır. 
 	* loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
