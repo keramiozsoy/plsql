@@ -240,13 +240,13 @@ END;
 ```
 
 ## konu 11
--- bir tavsiye loop içine insert update delete yazmaktan, fonksiyon çağırmaktan olabildiğince kaçmalıyız :)
--- peki kullanmaktan kaçamadım o zaman ise döngü bir kere çalışacak şekilde tasarlamalıyız.
---- döngü içinde döngü zaten hiç kullanmayın. 
--- bir veriyi doldurmak istiyorsak mutlaka sql ile doldurmalıyız loop ile döngü doldurulursa performans kaybıdır.
+* bir tavsiye loop içine insert update delete yazmaktan, fonksiyon çağırmaktan olabildiğince kaçmalıyız :)
+* peki kullanmaktan kaçamadım o zaman ise döngü bir kere çalışacak şekilde tasarlamalıyız.
+* döngü içinde döngü zaten hiç kullanmayın. 
+* bir veriyi doldurmak istiyorsak mutlaka sql ile doldurmalıyız loop ile döngü doldurulursa performans kaybıdır.
 
 
--- döngüler
-	-- loop konusu (TERCIH EDILEN)
-	-- programlamada do..while gibi çalışır.
-	-- loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+** döngüler
+	* loop konusu (TERCIH EDILEN)
+	* programlamada do..while gibi çalışır. 
+	* loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
