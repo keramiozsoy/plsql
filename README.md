@@ -265,8 +265,8 @@ BEGIN
 END;
 ```
 
-	-- while..loop konusu (EN AZ TERCIH EDILEN)
-	-- programlamada while gibi çalışır.
+-- while..loop konusu (EN AZ TERCIH EDILEN)
+-- programlamada while gibi çalışır.
 
 ```
 DECLARE
