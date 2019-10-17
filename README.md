@@ -267,23 +267,23 @@ END;
 
 	-- while..loop konusu (EN AZ TERCIH EDILEN)
 	-- programlamada while gibi çalışır.
-	
+
+
 DECLARE
 	ln_result NUMBER DEFAULT 0;
 BEGIN
-	WHILE ln_result > ' || SQL%ROWCOUNT);
-	END IF;
+    WHILE ln_result > ' || SQL%ROWCOUNT);
+    END IF;
 
+   lb_cursor_status :=	SQL%ISOPEN;
 	
-	lb_cursor_status :=	SQL%ISOPEN;
-	
-	IF  sql%FOUND = lb_cursor_status
-		THEN
-			dbms_output.put_line('CURSOR ACIK');
+   IF  sql%FOUND = lb_cursor_status
+	THEN
+		dbms_output.put_line('CURSOR ACIK');
 	ELSIF sql%NOTFOUND = lb_cursor_status
 		THEN
 			dbms_output.put_line('CURSOR KAPALI');
-	END IF;
+   END IF;
 
 END;
-```
+
