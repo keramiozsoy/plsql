@@ -250,3 +250,17 @@ END;
 	* loop konusu (TERCIH EDILEN)
 	* programlamada do..while gibi çalışır. 
 	* loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+```
+DECLARE
+	ln_result NUMBER DEFAULT 0;
+BEGIN
+	LOOP
+			ln_result := ln_result + 1;
+			BEGIN
+				dbms_output.put_line(TO_CHAR(ln_result));
+			END;
+			
+		EXIT WHEN ln_result = 5; -- loop tan çıkmak için kural
+	END LOOP;
+END;
+```
