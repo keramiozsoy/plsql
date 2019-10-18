@@ -288,3 +288,25 @@ BEGIN
 END;
 
 ```
+
+## 12 Explicit Cursor
+
+-- implicit cursor kullanmak istemeyip kendimiz de cursor tanımlıyabiliyoruz.
+ 		-- Çıktı olarak sadece bir satır veri alabildik.
+		-- Çünkü cursor bir satırı temsil edebiliyordu :)
+
+```
+ DECLARE
+ 	CURSOR my_cursor
+ 	IS
+ 		SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID DESC;
+ 	
+ 	dept_rec departments%ROWTYPE;
+ 
+ BEGIN 
+	 OPEN my_cursor;
+			FETCH my_cursor INTO dept_rec;
+			dbms_output.put_line(dept_rec.department_name);  
+	 CLOSE my_cursor;
+ END;
+```
