@@ -336,39 +336,38 @@ END;
 	 	
 	 OPEN my_cursor;
 					
-					lb_cursor_status :=	my_cursor%ISOPEN;
+			lb_cursor_status :=	my_cursor%ISOPEN;
 	
-					IF  lb_cursor_status
-						THEN
-							dbms_output.put_line('KONTROL 2 - CURSOR ACIK');
-					ELSE
-							dbms_output.put_line('KONTROL 2 - CURSOR KAPALI');
-					END IF;
+			IF  lb_cursor_status
+				THEN
+						dbms_output.put_line('KONTROL 2 - CURSOR ACIK');
+				ELSE
+						dbms_output.put_line('KONTROL 2 - CURSOR KAPALI');
+				END IF;
 		
-	FETCH my_cursor INTO dept_rec;
+	 FETCH my_cursor INTO dept_rec;
 		
-					lb_cursor_status :=	my_cursor%ISOPEN;
+			lb_cursor_status :=	my_cursor%ISOPEN;
 	
-					IF  lb_cursor_status
-						THEN
-							dbms_output.put_line('KONTROL 3 - CURSOR ACIK');
+				IF  lb_cursor_status
+					THEN
+						dbms_output.put_line('KONTROL 3 - CURSOR ACIK');
 					ELSE
-							dbms_output.put_line('KONTROL 3 - CURSOR KAPALI');
+						dbms_output.put_line('KONTROL 3 - CURSOR KAPALI');
 					END IF;
 				
-	 dbms_output.put_line(dept_rec.department_name);
+	 	dbms_output.put_line(dept_rec.department_name);
 		
 	 CLOSE my_cursor;
 	
-					lb_cursor_status :=	my_cursor%ISOPEN;
+			lb_cursor_status :=	my_cursor%ISOPEN;
 	
-					IF  lb_cursor_status
-						THEN
-							dbms_output.put_line('KONTROL 4 - CURSOR ACIK');
+				IF  lb_cursor_status
+					THEN
+						dbms_output.put_line('KONTROL 4 - CURSOR ACIK');
 					ELSE
-							dbms_output.put_line('KONTROL 4 - CURSOR KAPALI');
+						dbms_output.put_line('KONTROL 4 - CURSOR KAPALI');
 					END IF;
- END;
-
-		
+	 END;
+```
 
