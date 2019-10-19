@@ -310,3 +310,65 @@ END;
 	 CLOSE my_cursor;
  END;
 ```
+
+
+-- cursor açık mı kapalı mı öğrenelim.
+
+```
+ DECLARE
+ 	CURSOR my_cursor
+ 	IS
+ 		SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID DESC;
+ 	
+ 	dept_rec departments%ROWTYPE;
+ 
+ 	lb_cursor_status BOOLEAN;
+ BEGIN 
+	 
+			lb_cursor_status :=	my_cursor%ISOPEN;
+			 
+		 	IF  lb_cursor_status
+				THEN
+					dbms_output.put_line('KONTROL 1 - CURSOR ACIK');
+			ELSE 
+					dbms_output.put_line('KONTROL 1 - CURSOR KAPALI');
+			END IF;
+	 	
+	 OPEN my_cursor;
+					
+					lb_cursor_status :=	my_cursor%ISOPEN;
+	
+					IF  lb_cursor_status
+						THEN
+							dbms_output.put_line('KONTROL 2 - CURSOR ACIK');
+					ELSE
+							dbms_output.put_line('KONTROL 2 - CURSOR KAPALI');
+					END IF;
+		
+	FETCH my_cursor INTO dept_rec;
+		
+					lb_cursor_status :=	my_cursor%ISOPEN;
+	
+					IF  lb_cursor_status
+						THEN
+							dbms_output.put_line('KONTROL 3 - CURSOR ACIK');
+					ELSE
+							dbms_output.put_line('KONTROL 3 - CURSOR KAPALI');
+					END IF;
+				
+	 dbms_output.put_line(dept_rec.department_name);
+		
+	 CLOSE my_cursor;
+	
+					lb_cursor_status :=	my_cursor%ISOPEN;
+	
+					IF  lb_cursor_status
+						THEN
+							dbms_output.put_line('KONTROL 4 - CURSOR ACIK');
+					ELSE
+							dbms_output.put_line('KONTROL 4 - CURSOR KAPALI');
+					END IF;
+ END;
+
+		
+
