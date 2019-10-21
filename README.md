@@ -371,3 +371,29 @@ END;
 	 END;
 ```
 
+
+-- cursor dan tüm tablodaki veriyi alabilmek.
+
+-- loop
+
+```
+ DECLARE
+ 	CURSOR my_cursor
+ 	IS
+ 		SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID DESC;
+ 	
+ 	dept_rec departments%ROWTYPE; -- departments tablosundaki bir satıra karşılık gelen record tanımladık.
+ 
+ BEGIN
+	 OPEN my_cursor;
+		LOOP	
+			FETCH my_cursor INTO dept_rec;
+		
+			dbms_output.put_line(dept_rec.department_name);
+			dbms_output.put_line(my_cursor%ROWCOUNT); --cursorun şuan kaçıncı elemanındayım.
+			EXIT WHEN my_cursor%NOTFOUND; -- cursor da eleman kalmadığında otomatik loop dan çıkış yapıyoruz.
+		END LOOP;
+	 CLOSE my_cursor;
+ END;
+``` 
+
