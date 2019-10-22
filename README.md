@@ -414,3 +414,20 @@ DECLARE
 	 END LOOP;
  END;
 ```
+
+-- cursor a parametre göndermek.
+-- cursor kullanıldığında sadece sorgulanmış veriler doludur.
+```
+DECLARE
+	CURSOR my_cursor(p_location_id number)
+	IS
+ 		SELECT * FROM DEPARTMENTS
+ 		WHERE LOCATION_ID = p_location_id
+ 		ORDER BY DEPARTMENT_ID DESC;
+BEGIN
+	 FOR i_record IN my_cursor(1700) -- örnek olması için parametreyi elimle verdim. 
+	 LOOP
+	 	dbms_output.put_line(i_record.department_name);
+	 END LOOP;
+END;
+```
