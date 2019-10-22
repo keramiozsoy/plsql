@@ -397,3 +397,20 @@ END;
  END;
 ``` 
 
+
+-- cursor dan tüm tablodaki veriyi alabilmek. (CURSOR HIZLI KULLANIM)
+-- FOR
+-- FETCH yok, OPEN yok , CLOSE yok 
+```
+DECLARE
+ 	CURSOR my_cursor
+ 	IS
+ 		SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID DESC;
+ 
+ BEGIN
+	 FOR i_record IN my_cursor  -- oracle tarafından otomatik %ROWTYPE record oluşturulmuş olunur. 
+	 LOOP
+	 	dbms_output.put_line(i_record.department_name);
+	 END LOOP;
+ END;
+```
