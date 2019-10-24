@@ -447,7 +447,7 @@ DECLARE
  		WHERE LOCATION_ID = p_location_id
  		ORDER BY DEPARTMENT_ID DESC;
 BEGIN
-	 FOR i_rec IN cur_department(10) -- örnek olması için para etreyi elimle verdim.  
+	 FOR i_rec IN cur_department(10) -- örnek olması için parametreyi elimle verdim.  
 	 LOOP
 		UPDATE DEPARTMENTS
 		SET DEPARTMENT_NAME = 'DEPT_NAME_' || i_rec.department_id
