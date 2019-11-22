@@ -247,9 +247,10 @@ END;
 
 
 ## konu 11.1 döngüler
-	* loop konusu (TERCIH EDILEN)
-	* programlamada do..while gibi çalışır. 
-	* loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+* loop konusu (TERCIH EDILEN)
+* programlamada do..while gibi çalışır. 
+* loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+
 ```
 DECLARE
 	ln_result NUMBER DEFAULT 0;
