@@ -1,5 +1,7 @@
 # plsql
 
+plsql öğrenmeye çalışalım 
+
 Plsql kısaltmasının açılımı şu şekildedir.
 
 ```
