@@ -295,8 +295,9 @@ END;
 ## 12 Explicit Cursor
 
 -- implicit cursor kullanmak istemeyip kendimiz de cursor tanımlıyabiliyoruz.
- 		-- Çıktı olarak sadece bir satır veri alabildik.
-		-- Çünkü cursor bir satırı temsil edebiliyordu :)
+
+-- Çıktı olarak sadece bir satır veri alabildik.
+-- Çünkü cursor bir satırı temsil edebiliyordu :)
 
 ```
  DECLARE
