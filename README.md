@@ -107,7 +107,7 @@ END isim_verdim_adi_dis_blok_olsun;
 
 ## Konu 6 
 
--- into kullanımı
+into kullanımı
 
 -- sorguların sonucunu alıp kullanmak için kullanırız
 
@@ -167,7 +167,8 @@ END;
 ```
 
 ## Konu 9
--- kontrol yapıları
+
+ kontrol yapıları
 
 -- if elsif else
 
@@ -194,6 +195,7 @@ END;
 ```
 
 ## konu 10
+
 -- CASE WHEN yapısı
 -- hem plsql de hemde sql de case when yapısı mevcut. 
 -- sql de case when
