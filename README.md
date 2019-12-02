@@ -618,13 +618,89 @@ END;
 
 
 
-## 15 Explicit Cursor
 
--- implicit cursor kullanmak istemeyip kendimiz de cursor tanımlıyabiliyoruz.
 
--- Çıktı olarak sadece bir satır veri alabildik.
--- Çünkü cursor bir satırı temsil edebiliyordu :)
+-- konu 14
+-- cursors
+-- SELECT sorgusu ile elde ettiğimiz veri kümesinin pointer yapısı yardımı ile erişilebilmesini sağlayan yapıdır.
+-- Pointer yardımı ile küme içindeki değerleri tek tek dolaşıp erişmemizi sağlıyor.
+-- NEDEN KULLANIRIZ : Bir sql çıktısındaki kayıtları tek tek dolaşıp işlem yapmak istediğimde kullanırım.
+				-- ör birinci satırdaki kayıda şunu yap ikinciyi değişkene at  bunu yap gibi işlemler..	
+				-- bir tablonun tüm verilerini tek seferde kullanmam gerekiyorsa 
+				-- cursor kullanmak dogru değildir. insert as select vb işlemler ile tüm kayıt işini halledebiliriz.
+-- bir cursor scope alanına göre  bir çok plsql içerisinde ortak kullanılabiliyor.kod akışını tek cursor ile halledbiliyoruz.  
+					
+-- 3 tip cursor vardır.
+	-- Implicit Cursor 
+	-- Explicit Cursor
+	-- Ref Cursor sonraki konularda açıklanacak.
 
+-- Implicit Cursor 
+-- sql cümlesi çalıştırıldığında eğer explicit cursor yani bizim kendimizin tanımladığı cursor yoksa implicit cursor otomatik devreye girer.
+-- plsql içinden sql çağırdığımızda plsql engine çalışır,sql engine çalışır ve sql engine den donen cevap plsql engine dönülür.
+-- bu aradaki veri taşıma işlemini cursor ile yapıyoruz.
+-- cursor bir veya birden fazla veriyi hafızada tutarak yorumlamamızı sağlar.
+
+--  %ISOPEN 	--  implicit cursor da sql çalışması biter bitmez cursor kapandığı için bu değer hep false döner.
+				--  Açık olmayan bir cursor FETCH edilirse hata alınacaktır. 
+				--  Kapalı olmayan bir cursor açılmaya çalışılırsa hata alınacaktır.
+				-- Hataları almamak için cursor açık mı kapalı mı kullanıp anlayabiliriz. :)
+				
+-- sql%found  -- veri varsa true    
+			  -- blok içerisinde INSERT,UPDATE,DELETE bir veya birden fazla değer etkilenirse true,
+			  -- SELECT INTO daki INTO ya değer gelirse true olur.
+			  -- bir sonraki SELECT çalıştığında o SELECT deki değerlere göre yeni değeri alınır eskisi değeri silinir.
+-- sql%notfound -- veri yoksa true
+
+-- sql%rowcount  -- veri sayısı 
+				-- FETCH etmeden sql%rowcount gözükmez. Her FETCH edildiğinde yeni kayıt çekiliyor.
+				-- Bir tablodaki tüm kayıtları çektiğimizde kullandığımız editör bir kısmını getiriyor.
+				-- Sebebi ise programlamdaki datatable işlemlerinde lazy load mantığı gibi çalışıyor olmasındandır.
+				-- OCI (oracle call interface) bu işlemiin yapılmasını sağlar.
+
+-- %rowtype   attribute  -- tablo veya view deki kolonun veri tipine erişmek için kullanılır.  -- employees%rowtype;
+-- %type      attribute  -- bir kolonun tipine erişip kullanmak için  -- employees.last_name%type; 
+
+
+```
+SELECT * FROM DEPARTMENTS;
+DECLARE
+	lv_dept_name varchar2(100);
+	ln_dept_id NUMBER;
+	lb_cursor_status BOOLEAN;
+BEGIN
+	ln_dept_id := 10;
+	
+	SELECT d.department_name
+		INTO lv_dept_name
+	FROM DEPARTMENTS d
+	WHERE d.department_id = ln_dept_id;
+
+	IF sql%FOUND
+		then
+			dbms_output.put_line(lv_dept_name);
+			dbms_output.put_line('kayit sayisi ->> ' || SQL%ROWCOUNT);
+	END IF;
+
+	
+	lb_cursor_status :=	SQL%ISOPEN;
+	
+	IF  sql%FOUND = lb_cursor_status
+		THEN
+			dbms_output.put_line('CURSOR ACIK');
+	ELSIF sql%NOTFOUND = lb_cursor_status
+		THEN
+			dbms_output.put_line('CURSOR KAPALI');
+	END IF;
+
+END;
+```
+ --Explicit Cursor
+ 
+ -- implicit cursor kullanmak istemeyip kendimiz de cursor tanımlıyabiliyoruz.
+ 		-- Çıktı olarak sadece bir satır veri alabildik.
+		-- Çünkü cursor bir satırı temsil edebiliyordu :)
+		
 ```
  DECLARE
  	CURSOR my_cursor
@@ -641,10 +717,10 @@ END;
  END;
 ```
 
-
 -- cursor açık mı kapalı mı öğrenelim.
 
 ```
+
  DECLARE
  	CURSOR my_cursor
  	IS
@@ -666,47 +742,48 @@ END;
 	 	
 	 OPEN my_cursor;
 					
-			lb_cursor_status :=	my_cursor%ISOPEN;
+					lb_cursor_status :=	my_cursor%ISOPEN;
 	
-			IF  lb_cursor_status
-				THEN
-						dbms_output.put_line('KONTROL 2 - CURSOR ACIK');
-				ELSE
-						dbms_output.put_line('KONTROL 2 - CURSOR KAPALI');
-				END IF;
-		
-	 FETCH my_cursor INTO dept_rec;
-		
-			lb_cursor_status :=	my_cursor%ISOPEN;
-	
-				IF  lb_cursor_status
-					THEN
-						dbms_output.put_line('KONTROL 3 - CURSOR ACIK');
+					IF  lb_cursor_status
+						THEN
+							dbms_output.put_line('KONTROL 2 - CURSOR ACIK');
 					ELSE
-						dbms_output.put_line('KONTROL 3 - CURSOR KAPALI');
+							dbms_output.put_line('KONTROL 2 - CURSOR KAPALI');
+					END IF;
+		
+	FETCH my_cursor INTO dept_rec;
+		
+					lb_cursor_status :=	my_cursor%ISOPEN;
+	
+					IF  lb_cursor_status
+						THEN
+							dbms_output.put_line('KONTROL 3 - CURSOR ACIK');
+					ELSE
+							dbms_output.put_line('KONTROL 3 - CURSOR KAPALI');
 					END IF;
 				
-	 	dbms_output.put_line(dept_rec.department_name);
+	 dbms_output.put_line(dept_rec.department_name);
 		
 	 CLOSE my_cursor;
 	
-			lb_cursor_status :=	my_cursor%ISOPEN;
+					lb_cursor_status :=	my_cursor%ISOPEN;
 	
-				IF  lb_cursor_status
-					THEN
-						dbms_output.put_line('KONTROL 4 - CURSOR ACIK');
+					IF  lb_cursor_status
+						THEN
+							dbms_output.put_line('KONTROL 4 - CURSOR ACIK');
 					ELSE
-						dbms_output.put_line('KONTROL 4 - CURSOR KAPALI');
+							dbms_output.put_line('KONTROL 4 - CURSOR KAPALI');
 					END IF;
-	 END;
-```
+ END;
 
+```		
 
--- cursor dan tüm tablodaki veriyi alabilmek.
-
--- loop
-
-```
+ 
+ -- cursor dan tüm tablodaki veriyi alabilmek.
+ -- loop
+ 
+ ```
+ 
  DECLARE
  	CURSOR my_cursor
  	IS
@@ -725,13 +802,14 @@ END;
 		END LOOP;
 	 CLOSE my_cursor;
  END;
-``` 
-
-
+ ```
+ 
 -- cursor dan tüm tablodaki veriyi alabilmek. (CURSOR HIZLI KULLANIM)
 -- FOR
 -- FETCH yok, OPEN yok , CLOSE yok 
+
 ```
+
 DECLARE
  	CURSOR my_cursor
  	IS
@@ -743,11 +821,13 @@ DECLARE
 	 	dbms_output.put_line(i_record.department_name);
 	 END LOOP;
  END;
-```
-
+ ```
+ 
 -- cursor a parametre göndermek.
 -- cursor kullanıldığında sadece sorgulanmış veriler doludur.
+
 ```
+
 DECLARE
 	CURSOR my_cursor(p_location_id number)
 	IS
@@ -760,16 +840,20 @@ BEGIN
 	 	dbms_output.put_line(i_record.department_name);
 	 END LOOP;
 END;
+
 ```
 
 -- select for update
 -- tabloyu değil sadece kayıtları kilitler
 ```
-SELECT * FROM DEPARTMENTS FOR UPDATE;  --WAIT 5  bekle  -- NOWAIT; bekleme
+
+SELECT * FROM DEPARTMENTS FOR UPDATE;--WAIT 5  bekle
+									 -- NOWAIT; bekleme
 ```
 
 -- cursor where current of kullanımı
 ```
+
 DECLARE
 	CURSOR cur_department(p_location_id number)
 	IS
@@ -777,14 +861,12 @@ DECLARE
  		WHERE LOCATION_ID = p_location_id
  		ORDER BY DEPARTMENT_ID DESC;
 BEGIN
-	 FOR i_rec IN cur_department(10) -- örnek olması için parametreyi elimle verdim.  
+	 FOR i_rec IN cur_department(10) -- örnek olması için para etreyi elimle verdim.  
 	 LOOP
 		UPDATE DEPARTMENTS
 		SET DEPARTMENT_NAME = 'DEPT_NAME_' || i_rec.department_id
 		WHERE CURRENT OF cur_department; -- o cursor da bu update işlemini çalıştır. Eski bir kullanım artık tercih edilmiyor. 
 	 END LOOP;
 END;
+
 ```
-
-
-
