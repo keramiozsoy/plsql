@@ -870,3 +870,384 @@ BEGIN
 END;
 
 ```
+
+
+
+-- Ref Cursor
+-- anlat
+-- open fetch close yapmak zorundayız.
+--- sys_refcursor https://stackoverflow.com/questions/18274258/cursor-for-loop-in-oracle
+
+--- best practice kayıt bulundu bulunmadı diye SQL%notfound kullanılmaz. kayıt bulamazsa exceptiona düşyor
+-- ordan sqlfound yapıyoruz. 
+
+
+-- Bulk Collect Konusu
+-- ForALL konusu -- for loop yaptıktan sonra tek tek kayıtları update etmek isteiğimizde, tek seferde kayıtlara ulaşıp yapabiliriz.
+-- araştır.
+-- https://www.guru99.com/pl-sql-bulk-collect.html
+
+
+-- sqlj nedir ?
+-- araştır
+-- pre compiler kavramı
+-- java içine sql yazılamıyormuş sqlj içine java yazıyorsunuz plsql yazıyorsunuz sqlj ile compile edince bize java kodunu export ediyormuş
+-- proC
+-- proFortran
+-- proCobol
+
+
+
+-- konu 15
+-- exceptions
+
+-- anonymous block içerisindeki iş mantığında bir hata oldu. Bu hatayı yakaladık ve konsola çıktı olarak verdik.
+-- exception kısmını yazmadığımız zaman ki halini deyenip görebilirsiniz :)
+
+```
+DECLARE
+	l_emp varchar2(100);
+BEGIN
+	SELECT first_name || ' '|| last_name
+		INTO l_emp
+	FROM employees
+	WHERE employee_id = 5000; -- olmayan bir kayıt çağırdım
+
+	dbms_output.put_line(l_emp);
+
+	EXCEPTION 
+		WHEN NO_DATA_FOUND 
+			THEN 
+				dbms_output.put_line(' HATA -- Boyle bir employee kaydı yok');
+END;
+```
+
+-- bir insert atalım ve oluşan hatayı yakalayalım.
+-- burada bir problem var. KONTROL 2 kısmından önce bir hata oluştu.
+	-- bu nedenle anonymous block içindeki KONTROL 2 kısmı beklediğimiz gibi çalışmadı.
+	
+```
+DECLARE
+	l_emp varchar2(100);
+BEGIN
+	SELECT first_name || ' '|| last_name
+		INTO l_emp
+	FROM employees
+	WHERE employee_id = 100; -- olan bir kayıt çağırdım.
+
+	dbms_output.put_line(l_emp);
+	dbms_output.put_line('KONTROL 1');
+
+	INSERT INTO departments VALUES(10,'bolum 10',100,1700);  
+	
+	dbms_output.put_line('KONTROL 2'); -- buradaki kod önceki satırda kırıldı. bu satır yazılamadı.
+
+	EXCEPTION 
+		WHEN NO_DATA_FOUND 
+			THEN 
+				dbms_output.put_line(' HATA -- Boyle bir employee kaydı yok');
+		WHEN DUP_VAL_ON_INDEX
+			THEN
+				dbms_output.put_line(' HATA -- boyle bir department kaydı var girilemez');
+
+END;
+```
+
+-- iç içe anonymous block kullanarak bir önceki problemi çözmüyoruz fakat kodun kırılmasını engelliyebiliyoruz.
+-- KONTROL 3 bölümü çalıştırılabiliyor. Çünkü iç içe anonymous block kullandık.
+
+```
+DECLARE
+	l_emp varchar2(100);
+BEGIN
+	
+	BEGIN
+		SELECT first_name || ' '|| last_name
+			INTO l_emp
+		FROM employees
+		WHERE employee_id = 100; -- olan bir kayıt çağırdım.
+		
+		dbms_output.put_line(l_emp);
+		dbms_output.put_line('KONTROL 1');
+		EXCEPTION 
+				WHEN NO_DATA_FOUND 
+					THEN 
+						dbms_output.put_line(' HATA -- Boyle bir employee kaydı yok');
+	END;
+	BEGIN
+		INSERT INTO departments VALUES(10,'bolum 10',100,1700);  
+		
+		dbms_output.put_line('KONTROL 2'); -- buradaki kod önceki satırda kırıldı. bu satır yazılamadı.
+		EXCEPTION 	
+			WHEN DUP_VAL_ON_INDEX
+				THEN
+					dbms_output.put_line(' HATA -- boyle bir department kaydı var girilemez');
+	END;
+
+	dbms_output.put_line('KONTROL 3'); -- buradaki kod yazılabildi.
+
+END;
+
+```
+
+---- iç içe anonymous block larda exception kullanımı
+-- 
+-- bir anonymous block içerisinde bir oluşan hata,
+--  o blok içinde yazılmış hatalardan biri değil ise 
+-- kendisinden bir üst katmandaki anonymous block içerisinde aramaya başlar.
+-- eger bulamaz ise yine bir üstekine bakar.
+-- Burada dikkat edilmesi gereken kısım şudur. Bir üsteki bloğa kendi bloğunun end kısmından 
+-- sonra gelen kısmı çalıştıracak şekilde gitmez. Direkt olarak exception bölümüne gider.
+-- burada bir iş mantığınız var ise bu atlanmış olur.
+-- exception bölümünde yakalandıktan sonra kod kaldığı yerden akışına devam eder.
+-- çıktı şu şekildedir.  5. ve 6. satır atlanmıştır. :)  
+		--1
+		--2
+		--3
+		--4
+		-- HATA -- Boyle bir employee kaydı yok
+		--7
+```
+DECLARE
+	l_emp varchar2(100);
+BEGIN
+	dbms_output.put_line('1');
+	BEGIN
+		dbms_output.put_line('2');
+		BEGIN
+			dbms_output.put_line('3');
+			BEGIN
+				dbms_output.put_line('4');
+			
+				SELECT first_name || ' '|| last_name
+					INTO l_emp
+				FROM employees
+				WHERE employee_id = 5000; -- olmayan bir kayıt çağırdım.
+				--WHERE employee_id = 100; -- olan bir kayıt çağırdım.
+				
+				dbms_output.put_line(l_emp);
+			
+				EXCEPTION 
+				WHEN TOO_MANY_ROWS 
+					THEN 
+						dbms_output.put_line(' HATA -- Birden fazla kayıt geldi.');
+
+			END block_four;
+			dbms_output.put_line('5');
+		END block_three;
+		dbms_output.put_line('6');
+		EXCEPTION 
+			WHEN NO_DATA_FOUND 
+				THEN 
+					dbms_output.put_line(' HATA -- Boyle bir employee kaydı yok');
+	END block_two;
+	dbms_output.put_line('7');
+END;
+```
+--- exception raise kullanımı
+-- bu kullanım ile kodun akışını istediğimizde kırarız. 
+-- beklediğim bir istisna durumunu kendim oluşturmuş oluyorum.
+-- programada throw Exception(); gibi.
+
+-- hatayı yakaladıktan sonra uygulamamız kaldığı yerden devam etsin 
+```
+DECLARE
+	l_emp_count NUMBER;
+	e_emp_count EXCEPTION;
+BEGIN 
+	BEGIN
+		SELECT count(*)
+			INTO l_emp_count
+		FROM EMPLOYEES;
+	
+		dbms_output.put_line(l_emp_count);
+	
+		IF( l_emp_count > 100 ) 
+		THEN 
+			RAISE e_emp_count;
+		END IF;
+	
+		dbms_output.put_line('Bu satir istisna firlatiğimiz için çalışmıyor.');
+		
+		EXCEPTION
+			WHEN e_emp_count
+				THEN dbms_output.put_line('e_emp_count istisnasına düstü');
+	
+		dbms_output.put_line('Bu satir istisna EXCEPTION bölümüne girdiği için çalışıyor.');
+	END;
+	dbms_output.put_line('En dışarıdaki anonymous block Bu satir istisna EXCEPTION bölümüne girdiği için çalışıyor.');
+END;
+```
+
+-- hatayı yakaladıktan sonra birşey yapıp sonra tekrar hata fırlatılabilir.
+```
+DECLARE
+	l_emp_count NUMBER;
+	e_emp_count EXCEPTION;
+BEGIN 
+	BEGIN
+		SELECT count(*)
+			INTO l_emp_count
+		FROM EMPLOYEES;
+	
+		dbms_output.put_line(l_emp_count);
+	
+		IF( l_emp_count > 100 ) 
+		THEN 
+			RAISE e_emp_count;
+		END IF;
+	
+		dbms_output.put_line('Bu satir istisna firlatiğimiz için çalışmıyor.');
+		
+		EXCEPTION
+			WHEN e_emp_count
+				THEN dbms_output.put_line('e_emp_count istisnasına düstü');
+				RAISE NO_DATA_FOUND; -- RAISE NO_DATA_FOUND; bu tipte bir üste fırlatır.
+			
+		dbms_output.put_line('Bu satir istisna EXCEPTION bölümünde RAISE; olduğundan çalışmıyor.');
+	END;
+	dbms_output.put_line('En dışarıdaki anonymous block Bu satir istisna EXCEPTION bölümünde RAISE; olduğundan çalışmıyor.');
+
+	EXCEPTION
+		WHEN NO_DATA_FOUND
+			THEN dbms_output.put_line('Iceriden RAISE NO_DATA_FOUND seklinde fırlatıldıgi icin burası çalışıyor.');
+END;
+```
+
+
+-- kodun akışını kırmak ve programın o hata sonrasında durmasını istiyorum. 
+-- iç içe olan anonymous block ların içlerinde
+--  exception when then mekanizması yazmak yerine en dıştakine hepsini yakalayabiliriz.
+
+
+-- exception pragma
+-- oluşmasını beklediğimiz bir istisnanın istediğimz bir hata kodu ile eşleştirilmesidir.
+-- PRAGMA EXCEPTION_INIT ile oluşturuyoruz.
+-- hatayı yakaladıktan sonra uygulamamız kaldığı yerden devam ediyor.
+```
+DECLARE
+	e_ora_60 EXCEPTION;
+	PRAGMA EXCEPTION_INIT (e_ora_60,-1400) ; -- e_ora_60 hatası oluştuğunda bu hata kodunu bas
+BEGIN
+		BEGIN
+			INSERT INTO departments (department_id,department_name,manager_id,location_id)
+			VALUES (260,NULL,NULL,NULL);
+		
+			EXCEPTION	
+				WHEN e_ora_60
+					THEN
+						dbms_output.put_line('e_ora_60 BEKLEDIGIM HATA OLUSTUGUNDA BURAYA GIRER');
+						dbms_output.put_line('SQLCODE -->> '|| SQLCODE || ' SQLERR -->> '|| SQLERRM || ' HATASI OLUSTU');
+				WHEN OTHERS
+					THEN -- when others kullanmamak en güzeli. eğer iç blocklarda bir yazarsa kod çalıştı zannedersin ama biri o hatayı yutmuş olur :)
+						dbms_output.put_line('BASKA HATA OLUSTUGUNDA BURAYA GIRER');
+						dbms_output.put_line('SQLCODE -->> '|| SQLCODE || ' SQLERR -->> '|| SQLERRM || ' HATASI OLUSTU');
+		-- ÇIKTISI		
+		--	e_ora_60 BEKLEDIGIM HATA OLUSTUGUNDA BURAYA GIRER
+		--	SQLCODE -->> -1400 SQLERR -->> ORA-01400: cannot insert NULL into ("HR"."DEPARTMENTS"."DEPARTMENT_NAME") HATASI OLUSTU
+		END;
+		dbms_output.put_line('HATA OLUSTUKTAN SONRA YAKALANDI VE BURADAN DEVAM ETTI ');
+END;
+```
+--
+-- raise application error
+-- PRAGMA EXCEPTION_INIT ile var olan bir kodu vermek istediğimiz isim ile eşleştiriyorduk.
+-- Fakat burada belirlediğimiz hata mesajlarını oracle tarafından
+--  belirlenen -20000 ile -21000 arasınaki sayılarına atama yaparak kullanabiliriz.
+-- anonymous block içinden bu bloğu çağıran uygulamaya hata dönülmesi sağlanır. 
+
+```
+DECLARE
+	l_test_no NUMBER DEFAULT 10;
+BEGIN
+	IF l_test_no < 11
+		THEN 
+			RAISE_APPLICATION_ERROR(-20008,'l_test_no 11 den kücüktür.');
+	END IF;
+
+	dbms_output.put_line('asdf');
+
+	EXCEPTION 
+		WHEN OTHERS
+			THEN
+				dbms_output.put_line(SQLCODE ||' ->> '|| SQLERRM);
+-- çıktı			
+--	-20008 ->> ORA-20008: l_test_no 11 den kücüktür.
+END;
+
+```
+
+
+
+-- konu 16
+-- ROLLBACK example ekle
+-- 
+-- konu 17 ve konu 18
+-- fonksiyonlar ve prosedürler subprograms olarak değerlendirilirler
+-- fonksiyonlar ve prosedürler anonymous block ların isim verilmiş halleri olarak karşımıza çıkar.
+-- biraz karşılaştırma yapalım.
+-- anonymous block 
+	-- isimsiz plsql bloklarıdır.
+	-- her çalıştırıldığında yeniden derlenir.
+	-- veritabanında saklanmaz.
+	-- diğer uygulamalardan çağırılamaz.
+	-- değer dönemezler
+	-- parametre alamazlar. 
+-- fakat
+-- subprograms (functions , procedures)
+	-- isimlendirilmişlerdir.
+	-- bir kez derlendikten sonra çalışmaya hazır.
+	-- veritabanında saklanır.
+	-- diğer uygulamalardan çağrılabilir.
+	-- fonksiyon tipi değer dönmek zorundadır.
+	-- parametre alabilirler
+	
+-- konu 17
+-- functions 
+-- function kullanırken insert update delete yazmamak lazım bu işlemleri procedure de yapmaliyiz.
+```
+CREATE OR REPLACE FUNCTION f_get_employee_info(p_employee_id IN NUMBER)
+	RETURN VARCHAR2
+	IS
+
+	l_emp_info VARCHAR2 (1000);
+BEGIN
+	SELECT first_name ||'*'|| last_name
+		INTO l_emp_info
+	FROM EMPLOYEES
+	WHERE employee_id = p_employee_id;
+
+	RETURN l_emp_info;
+
+	EXCEPTION
+		WHEN NO_DATA_FOUND
+			THEN
+				l_emp_info := 'NOT_FOUND EMPLOYEE';
+				RETURN l_emp_info;
+END;
+
+```
+--
+```
+
+SELECT 	*
+FROM user_objects
+WHERE
+	object_name
+LIKE '%f_get_employee_info%';
+--
+DECLARE
+	l_result_info varchar2(20);
+BEGIN
+	SELECT f_get_employee_info(1) 
+		INTO l_result_info
+	FROM dual	;
+
+	dbms_output.put_line(l_result_info);
+
+	l_result_info := f_get_employee_info(100);
+
+	dbms_output.put_line(l_result_info);
+
+END;
+```
