@@ -463,3 +463,15 @@ BEGIN
 	 END LOOP;
 END;
 ```
+
+
+## 13 procedure
+
+-- veritabanında kod bloklarını tutmak istediğimizde kullanırız.
+-- java dotnet gibi programlama dillerinde compile edilen kodlar 
+-- file system üzerinde durmaktadır. fakat veritabanında bu şekilde değildir
+-- precedure bir veritabanı nesnesi olduğundan doğrudan veritabanı üzerine tutulur.
+
+select * from dba_user
+
+
