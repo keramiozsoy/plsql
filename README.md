@@ -8,6 +8,14 @@ Plsql kısaltmasının açılımı şu şekildedir.
 procedural language extension to structured query language
 ```
 
+
+| Konu | Açıklama |
+| --- | --- |
+| Konu1 | Başlangıç |
+| Konu2 | Devam |
+| Konu3 | Devam3 |
+
+
 ## Konu 1
 
 herhangi bir ismi olmayan begin ile başlayıp end ile biten yapılardır
