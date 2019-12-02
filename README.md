@@ -252,11 +252,13 @@ END;
 * bir veriyi doldurmak istiyorsak mutlaka sql ile doldurmalıyız loop ile döngü doldurulursa performans kaybıdır.
 
 
-## konu 11.1 döngüler
-* loop konusu (TERCIH EDILEN)
-* programlamada do..while gibi çalışır. 
-* loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+## döngüler
+* 11.1 loop konusu (TERCIH EDILEN)
+* 11.2 programlamada do..while gibi çalışır. 
+* 11.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
 
+
+* 11.1
 ```
 DECLARE
 	ln_result NUMBER DEFAULT 0;
@@ -272,6 +274,7 @@ BEGIN
 END;
 ```
 
+* 11.2
 -- while..loop konusu (EN AZ TERCIH EDILEN)
 -- programlamada while gibi çalışır.
 
@@ -296,7 +299,326 @@ END;
 
 ```
 
-## 12 Explicit Cursor
+* 11.3
+
+	-- for..loop konusu  (EN COK TERCIH EDILEN)
+	-- programlamada for gibi çalışır.
+```	
+DECLARE
+	ln_result NUMBER DEFAULT 0;
+BEGIN
+	for i IN 1 .. 50  -- loop tan çıkmak için kural
+	LOOP
+			ln_result := ln_result + 1;
+			BEGIN
+				dbms_output.put_line(TO_CHAR(ln_result));
+			END;
+			
+	END LOOP;
+END;
+```
+
+
+-- konu 12
+-- objectives 
+-- karma veri tipleri
+	-- ikiye ayrılır. 
+		-- 12.1 record konusu  (tek satır)
+		-- 12.2 collection konusu (arrays - çok satır)
+			-- 12.2.1 associative arrays (index by tables)
+				-- 12.2.1.1 INDEX BY TABLE  
+				-- 12.2.1.2 INDEX BY TABLE OF RECORDS
+			-- 12.2.2 nested table
+			-- 12.2.3 varray 
+-- 12.1 - record veri tipi kulanımı
+-- tabloda bir satıra karşılık gelen değeri karşılıyoruz.
+-- aklımızda olsun : ne zaman bir type oluşturulur hemen bir değişken oluşturup bağlamalıyız.
+-- bir record hiç bir zaman döngü ile doldurulmamalıdır. sorgu çekilip doldurmak çok daha performans kazandırır.
+
+```
+DECLARE
+	TYPE t_emp IS RECORD (
+		employee_id NUMBER,
+		employee_name VARCHAR2(100),
+		hire_date DATE
+	);
+
+	t_blueprint t_emp;  -- kendimizin oluşturduğu tipi bir değişkene atadık.
+	t_blueprint_2 t_emp;
+BEGIN
+	t_blueprint.employee_id := 100;
+	t_blueprint.employee_name := 'test-test';
+	t_blueprint.hire_date := SYSDATE;
+
+	dbms_output.put_line(t_blueprint.employee_id || '-' || t_blueprint.employee_name || '-' || t_blueprint.hire_date);
+
+	t_blueprint_2 := t_blueprint;
+	t_blueprint_2.employee_name := 'prod-prod';
+
+	dbms_output.put_line(t_blueprint_2.employee_id || '-' || t_blueprint_2.employee_name || '-' || t_blueprint_2.hire_date);
+END;
+```
+
+--sorgudan gelen bir satıra karşılık gelen değeri karşılıyoruz.
+
+```
+DECLARE
+	TYPE t_emp IS RECORD (
+		employee_id NUMBER,
+		employee_name VARCHAR2(100),
+		hire_date DATE
+	);
+
+	t_blueprint t_emp;  -- kendimizin oluşturduğu tipi bir değişkene atadık.
+
+BEGIN
+	SELECT t.employee_id,t.FIRST_NAME ||'*'|| t.LAST_NAME,t.HIRE_DATE
+		INTO t_blueprint
+	FROM EMPLOYEES t
+	WHERE t.employee_id = 100;
+	
+	dbms_output.put_line(t_blueprint.employee_id || '-' || t_blueprint.employee_name || '-' || t_blueprint.hire_date);
+END;
+```
+
+-- tipleri dinamik olarak oluşturmak için tablodan okuyorum.
+
+```
+DECLARE
+	t_blueprint employees%ROWTYPE; -- tablodaki kolonların tipleri ne ise otomatik alabildim.
+
+BEGIN
+	SELECT *
+		INTO t_blueprint
+	FROM EMPLOYEES t
+	WHERE t.employee_id = 100;
+	
+	dbms_output.put_line(t_blueprint.employee_id || '-' || t_blueprint.first_name || '-' || t_blueprint.hire_date);
+END;
+
+```
+-- bir tablodan diğerini oluşturmak  - veri aktarmak
+
+```
+  	CREATE TABLE employees_temp AS (SELECT *    FROM EMPLOYEES    WHERE 1 = 2 ); -- verileri taşımadık
+	SELECT * FROM employees_temp;
+  	
+DECLARE
+	l_emp employees%rowtype;  --record oluşturduk
+BEGIN
+	INSERT INTO employees_temp
+		SELECT * FROM EMPLOYEES
+		WHERE employee_id = 100;
+	
+--	burada bişey vardı ekleyeceğim.
+
+	UPDATE EMPLOYEES_TEMP t
+	SET ROW  = l_emp
+	WHERE t.employee_id = 100;
+	COMMIT;
+END;
+
+```
+-- DAY 1 FINISH
+
+
+-- konu 12.2.1
+-- record veri tipinde tek satır tutabiliyorduk bunlarda çok satır tutabiliyoruz.
+-- array kullanımı
+-- bir array tanımlamak için 
+	-- iki şekildedir. 
+		-- 12.2.1.1 INDEX BY TABLE  
+		-- 12.2.1.2 INDEX BY TABLE OF RECORDS
+
+-- konu 12.2.1.1
+-- index by table kullanımı
+
+-- index by ile yazılan sayılar ram üzerinde saklanırlar.
+-- index integer sayı olacak şekilde number tipinde veri tutan array tanımladık.
+-- index kısmını index by number , index by varchar2(1000) şeklinde tanımlayabilirdik.
+
+```
+DECLARE	
+	TYPE typ_employees IS TABLE OF NUMBER INDEX BY pls_integer;  --pls_integer hazır keyword.
+
+	tbl_employees typ_employees;  -- ne zaman bir tip oluşturulmuş ise onu mutlaka bir değişkene atayalım :)
+
+	l_employee_id NUMBER;
+	l_count NUMBER;
+BEGIN
+	tbl_employees(1) := 100;
+	tbl_employees(2) := 200;
+	tbl_employees(3) := 300;
+	tbl_employees(4) := 400;
+
+	
+	l_employee_id := tbl_employees(3);
+	dbms_output.put_line(l_employee_id);
+	dbms_output.put_line('Tablodaki eleman sayısı ' || tbl_employees.COUNT); 
+END;
+```
+
+-- bir tablodaki bir satıra karşılık gelen tüm alanlarını türleriyle karşılayabilecek bir array oluşturup içine iki tane eleman ekledim.
+
+```
+
+DECLARE
+	TYPE typ_employee IS TABLE OF employees%rowtype INDEX BY pls_integer;
+	--TYPE typ_employee IS TABLE OF employees%rowtype INDEX BY varchar2(1000); -- bu sekilde olduğunda index harflerle tutuluyor.
+	
+	tbl_employees typ_employee;
+BEGIN
+	tbl_employees(1).employee_id := 100;
+	tbl_employees(1).first_name := 'test name';
+	tbl_employees(1).last_name := 'test lastname';
+	tbl_employees(1).hire_date := SYSDATE;
+
+	tbl_employees(2).first_name := 'test name2';
+	tbl_employees(2).hire_date := SYSDATE;
+
+	dbms_output.put_line(tbl_employees(2).hire_date);
+	dbms_output.put_line('Tablodaki eleman sayısı ' || tbl_employees.COUNT);
+END;
+
+```
+
+-- bir tablodaki tüm veriyi  TABLE OF INDEX e kopyalayıp kullanmak ve yazdırmak. 
+```
+DECLARE
+	TYPE typ_employee IS TABLE OF employees%rowtype INDEX BY pls_integer;
+	tbl_employees typ_employee;
+BEGIN
+	SELECT *
+		BULK COLLECT INTO tbl_employees -- tüm veriyi performanslı şekilde almak BULK COLLECT, sadece * da olsa olurdu.
+	FROM
+	EMPLOYEES;
+	
+	dbms_output.put_line(tbl_employees(2).last_name);
+	dbms_output.put_line(tbl_employees(33).first_name);
+
+	dbms_output.put_line('array daki elemanın sayısı ' || tbl_employees.COUNT); -- index by table methods
+	dbms_output.put_line('ilk elemanın indeksi  ' || tbl_employees.FIRST);
+	dbms_output.put_line('ilk elemanın indeksi  ' || tbl_employees.LAST);
+	dbms_output.put_line('3 nolu elemanın öncesindeki elemanın indeksi ' || tbl_employees.PRIOR(3));
+
+
+	FOR i IN tbl_employees.FIRST..tbl_employees.LAST
+	LOOP
+		dbms_output.put_line(tbl_employees(i).FIRST_NAME || '--' || tbl_employees(i).LAST_NAME);
+	END LOOP;
+END;
+```
+
+-- konu 12.2.1.2
+-- index by table of records kullanımı
+
+-- 
+
+-- önceki örneklerde array in tipi 
+-- belirli bir alan NUMBER,VARCHAR gibi 
+-- tablodan referans olan bir alan record employees.employee_id%type
+-- veya tablonun bir satırını karşılayan  record employees%rowtype 
+-- olabiliyordu.
+
+--
+ 
+-- bir array in tipi bir record olabilir. 
+-- bu durum bize bir dizinin bir alanına bir tablodan çektiğimiz tüm veriyi atabilmeyi sağlar :)
+```
+DECLARE
+	TYPE typ_my_record IS RECORD
+	(
+		alan1 DATE,
+		alan2 NUMBER
+	);
+	-- verilerin tamamını alırken zaten indeksli index by terimini kullanmak gereksiz.
+ TYPE tbl_my_records IS TABLE OF typ_my_record;
+	
+	l_tbl_my_array  tbl_my_records;
+	
+BEGIN
+	SELECT k.hire_date, k.employee_id
+		BULK COLLECT INTO l_tbl_my_array
+	FROM 
+	employees k;
+END;
+```
+
+ -- record un record u 
+
+```
+DECLARE
+ 	--- TANIM1
+	TYPE typ_my_record IS RECORD
+	(
+		alan1 DATE,
+		alan2 NUMBER
+	);
+	
+	TYPE tbl_my_records IS TABLE OF typ_my_record;
+	
+	l_my_table  tbl_my_records;
+	---
+	--- TANIM2
+	TYPE typ_my_parent_record IS RECORD
+	(
+		alan1 varchar2(10),
+		alan2_list tbl_my_records
+	);
+
+	l_my_parent_table typ_my_parent_record;
+	---
+BEGIN
+	NULL;
+END;
+```
+
+-- konu 12.2.2 nested table array
+-- nested table, tablo içindeki tabloya verilen isimdir.
+-- tabloda tüm veriler kullanılıyorsa bu rahatlıkla kullanılabilir.
+-- INDEX BY yazılmıyor ise oracle kendisi index değeri verir. Yukarıda örneği mevcut.
+-- örnek olarak bir record içinde bir record olabiliyordu. Bir tabloda olabilir :)
+-- yani her recordun bir alanı farklı bir tablonun tamamı olabilir :)
+
+-- bunun constructor kullanımı var anlatılabilir.
+ 
+ ```
+DECLARE  -- bu ornegi sil
+	TYPE location_type IS TABLE OF LOCATIONS.CITY%TYPE;
+	offices location_type;
+	table_count NUMBER;
+BEGIN
+	offices := location_type('city1','city2','city3');
+	
+	FOR i IN 1..offices.COUNT
+	LOOP
+		dbms_output.put_line(offices(i));
+	END LOOP;
+END;
+
+```
+
+-- konu 12.2.3 varray
+-- anlat 
+-- nested array den farklı olarak sabit değerli olarak array oluşturulur.
+-- Sonradan extend metodu ile array boyutu genişletilebiliyor.
+
+```
+
+DECLARE
+	TYPE tbl_number IS VARRAY(3) OF NUMBER;
+BEGIN
+	NULL;
+END;
+
+```
+
+-- konu 13 context switching
+--- anlat
+
+
+
+## 15 Explicit Cursor
 
 -- implicit cursor kullanmak istemeyip kendimiz de cursor tanımlıyabiliyoruz.
 
@@ -464,14 +786,5 @@ BEGIN
 END;
 ```
 
-
-## 13 procedure
-
--- veritabanında kod bloklarını tutmak istediğimizde kullanırız.
--- java dotnet gibi programlama dillerinde compile edilen kodlar 
--- file system üzerinde durmaktadır. fakat veritabanında bu şekilde değildir
--- precedure bir veritabanı nesnesi olduğundan doğrudan veritabanı üzerine tutulur.
-
-select * from dba_user
 
 
