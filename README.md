@@ -11,9 +11,13 @@ procedural language extension to structured query language
 
 | Konu | Açıklama |
 | --- | --- |
-| Konu1 | Başlangıç |
-| Konu2 | Devam |
-| Konu3 | Devam3 |
+| Konu1 | Hazırlık |
+| Konu2 | Değişken tanımlama ve ekrana yazdırma |
+| Konu3 | Değişken isimlendirme standartı |
+| Konu4 | Tablodaki kolon tipine göre dinamik değişken oluşturmak |
+| Konu5 | Anonymous block nedir|
+| Konu6 | into kullanımı |
+| Konu7 | | 
 
 
 ## Konu 1
