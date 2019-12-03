@@ -1263,3 +1263,43 @@ BEGIN
 
 END;
 ```
+
+# 18 procedure 
+
+-- procedure kullanımı
+-- PROCEDURE bir OBJECT tipidir.
+
+-- bu nedenle db de saklanır.
+
+-- oluşturduğunuz prosedürlerin tamamına erişebilirsiniz.
+
+--SELECT * FROM user_objects x WHERE x.object_type = 'PROCEDURE';
+
+-- PROCEDURE neden kullanılır ?
+-- farklı işlemleri mantıksal olarak toplayıp tek noktadan çalıştırmamızı sağlar.
+
+CREATE OR REPLACE PROCEDURE prc_hello
+AS 
+	v_hello varchar2(20) := 'hello';
+BEGIN
+	DBMS_OUTPUT.put_line('hey ' || V_HELLO );
+END;
+/
+
+--
+BEGIN
+	HR.PRC_HELLO();
+END;
+
+--veya
+
+CALL HR.PRC_HELLO();
+--veya 
+SET serveroutput ON; 
+-- açtıktan sonra 
+EXECUTE HR.PRC_HELLO();
+--veya 
+EXEC HR.PRC_HELLO();
+
+-- çağırabilirsiniz
+
