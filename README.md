@@ -17,7 +17,8 @@ procedural language extension to structured query language
 | Konu4 | Tablodaki kolon tipine göre dinamik değişken oluşturmak |
 | Konu5 | Anonymous block nedir|
 | Konu6 | into kullanımı |
-| Konu7 | | 
+| Konu7 | konu 6 silinecek | 
+| Konu8 | çoklu into kullanımı | 
 
 
 ## Konu 1
