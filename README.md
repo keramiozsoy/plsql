@@ -21,6 +21,8 @@ procedural language extension to structured query language
 | Konu8 | çoklu into kullanımı | 
 | Konu9 | kontrol yapıları - if else | 
 | Konu10 | kontrol yapıları - case when |
+| Konu11 | döngüler - loop |
+| Konu11 | döngüler - while loop |
 
 
 ## Konu 1
