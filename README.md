@@ -19,6 +19,8 @@ procedural language extension to structured query language
 | Konu6 | into kullanımı |
 | Konu7 | konu 6 silinecek | 
 | Konu8 | çoklu into kullanımı | 
+| Konu9 | kontrol yapıları - if else | 
+| Konu10 | kontrol yapıları - case when |
 
 
 ## Konu 1
