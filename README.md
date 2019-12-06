@@ -23,6 +23,8 @@ procedural language extension to structured query language
 | Konu10 | kontrol yapıları - case when |
 | Konu11 | döngüler - loop |
 | Konu11 | döngüler - while loop |
+| Konu12 | index by table |
+| Konu12 | index by record |
 
 
 ## Konu 1
