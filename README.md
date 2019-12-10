@@ -25,6 +25,8 @@ procedural language extension to structured query language
 | Konu11 | döngüler - while loop |
 | Konu12 | index by table |
 | Konu12 | index by record |
+| Konu13 | context switching |
+| Konu14 | cursors |
 | Konu16 | procedure |
 
 
