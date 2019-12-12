@@ -27,6 +27,10 @@ procedural language extension to structured query language
 | Konu12 | index by record |
 | Konu13 | context switching |
 | Konu14 | cursors |
+|   -    | implicit cursor |
+|   -    | explicit cursor |
+|   -    | ref cursor |
+| Konu15 | -- |
 | Konu16 | procedure |
 
 
