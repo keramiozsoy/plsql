@@ -32,6 +32,7 @@ procedural language extension to structured query language
 |   -    | ref cursor |
 | Konu15 | -- |
 | Konu16 | procedure |
+| Konu17 | functions |
 
 
 ## Konu 1
