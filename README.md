@@ -20,7 +20,10 @@ procedural language extension to structured query language
 | Konu7 | konu 6 silinecek | 
 | Konu8 | çoklu into kullanımı | 
 | Konu9 | kontrol yapıları - if else | 
-| Konu10 | kontrol yapıları - case when |
+| Konu10 | kontrol yapıları |
+| -      | sql de case when |
+| -      | sql de decode |
+| -      | plsql de case when |
 | Konu11 | döngüler |
 | -      |  loop  |
 | -      |  while loop |
