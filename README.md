@@ -29,6 +29,7 @@ procedural language extension to structured query language
 | -      |  while loop |
 | -      |  for loop |
 | Konu12 | index by table |
+| -      | record |
 | -      | index by record |
 | -      | nested table array |
 | Konu13 | context switching |
