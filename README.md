@@ -145,12 +145,8 @@ into kullanımı
 
 -- sorguların sonucunu alıp kullanmak için kullanırız
 
-```
-NOT 
--- plsql içinde sql çalıştırıldığında dönen değeri tutacak bir yer yoktur.
--- Bu nedenle dönen değeri bir değişkene veya bir collection a atmalıyız ki kullanabilelim.
--- deneyip hatayı alalım.
-```
+plsql içinde sql çalıştırıldığında dönen değeri tutacak bir yer yoktur. Bu nedenle dönen değeri bir değişkene veya bir collection a atmalıyız ki kullanabilelim. Deneyip hatayı alalım.
+
 
 ```
 BEGIN
@@ -280,16 +276,16 @@ END;
 ```
 
 ## konu 11
-* bir tavsiye loop içine insert update delete yazmaktan, fonksiyon çağırmaktan olabildiğince kaçmalıyız :)
-* peki kullanmaktan kaçamadım o zaman ise döngü bir kere çalışacak şekilde tasarlamalıyız.
-* döngü içinde döngü zaten hiç kullanmayın. 
-* bir veriyi doldurmak istiyorsak mutlaka sql ile doldurmalıyız loop ile döngü doldurulursa performans kaybıdır.
+	* bir tavsiye loop içine insert update delete yazmaktan, fonksiyon çağırmaktan olabildiğince kaçmalıyız :)
+	* peki kullanmaktan kaçamadım o zaman ise döngü bir kere çalışacak şekilde tasarlamalıyız.
+	* döngü içinde döngü zaten hiç kullanmayın. 
+	* bir veriyi doldurmak istiyorsak mutlaka sql ile doldurmalıyız loop ile döngü doldurulursa performans kaybıdır.
 
 
 ## döngüler
-* 11.1 loop konusu (TERCIH EDILEN)
-* 11.2 programlamada do..while gibi çalışır. 
-* 11.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+	* 11.1 loop konusu (TERCIH EDILEN)
+	* 11.2 programlamada do..while gibi çalışır. 
+	* 11.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
 
 
 * 11.1
@@ -309,8 +305,8 @@ END;
 ```
 
 * 11.2
--- while..loop konusu (EN AZ TERCIH EDILEN)
--- programlamada while gibi çalışır.
+	 while..loop konusu (EN AZ TERCIH EDILEN)
+	 programlamada while gibi çalışır.
 
 ```
 DECLARE
@@ -354,20 +350,24 @@ END;
 
 
 -- konu 12
--- objectives 
--- karma veri tipleri
-	-- ikiye ayrılır. 
-		-- 12.1 record konusu  (tek satır)
-		-- 12.2 collection konusu (arrays - çok satır)
-			-- 12.2.1 associative arrays (index by tables)
-				-- 12.2.1.1 INDEX BY TABLE  
-				-- 12.2.1.2 INDEX BY TABLE OF RECORDS
-			-- 12.2.2 nested table
-			-- 12.2.3 varray 
+
+	-- objectives 
+	-- karma veri tipleri
+		-- ikiye ayrılır. 
+			-- 12.1 record konusu  (tek satır)
+			-- 12.2 collection konusu (arrays - çok satır)
+				-- 12.2.1 associative arrays (index by tables)
+					-- 12.2.1.1 INDEX BY TABLE  
+					-- 12.2.1.2 INDEX BY TABLE OF RECORDS
+				-- 12.2.2 nested table
+				-- 12.2.3 varray 
+
 -- 12.1 - record veri tipi kulanımı
--- tabloda bir satıra karşılık gelen değeri karşılıyoruz.
--- aklımızda olsun : ne zaman bir type oluşturulur hemen bir değişken oluşturup bağlamalıyız.
--- bir record hiç bir zaman döngü ile doldurulmamalıdır. sorgu çekilip doldurmak çok daha performans kazandırır.
+
+	-- tabloda bir satıra karşılık gelen değeri karşılıyoruz.
+	-- aklımızda olsun : ne zaman bir type oluşturulur hemen bir değişken oluşturup bağlamalıyız.
+	-- bir record hiç bir zaman döngü ile doldurulmamalıdır. sorgu çekilip doldurmak çok daha performans kazandırır.
+
 
 ```
 DECLARE
@@ -457,19 +457,20 @@ END;
 
 
 -- konu 12.2.1
--- record veri tipinde tek satır tutabiliyorduk bunlarda çok satır tutabiliyoruz.
--- array kullanımı
--- bir array tanımlamak için 
-	-- iki şekildedir. 
-		-- 12.2.1.1 INDEX BY TABLE  
-		-- 12.2.1.2 INDEX BY TABLE OF RECORDS
+
+	-- record veri tipinde tek satır tutabiliyorduk bunlarda çok satır tutabiliyoruz.
+	-- array kullanımı
+	-- bir array tanımlamak için 
+		-- iki şekildedir. 
+			-- 12.2.1.1 INDEX BY TABLE  
+			-- 12.2.1.2 INDEX BY TABLE OF RECORDS
 
 -- konu 12.2.1.1
 -- index by table kullanımı
 
--- index by ile yazılan sayılar ram üzerinde saklanırlar.
--- index integer sayı olacak şekilde number tipinde veri tutan array tanımladık.
--- index kısmını index by number , index by varchar2(1000) şeklinde tanımlayabilirdik.
+	-- index by ile yazılan sayılar ram üzerinde saklanırlar.
+	-- index integer sayı olacak şekilde number tipinde veri tutan array tanımladık.
+	-- index kısmını index by number , index by varchar2(1000) şeklinde tanımlayabilirdik.
 
 ```
 DECLARE	
@@ -608,11 +609,12 @@ END;
 ```
 
 -- konu 12.2.2 nested table array
--- nested table, tablo içindeki tabloya verilen isimdir.
--- tabloda tüm veriler kullanılıyorsa bu rahatlıkla kullanılabilir.
--- INDEX BY yazılmıyor ise oracle kendisi index değeri verir. Yukarıda örneği mevcut.
--- örnek olarak bir record içinde bir record olabiliyordu. Bir tabloda olabilir :)
--- yani her recordun bir alanı farklı bir tablonun tamamı olabilir :)
+
+	-- nested table, tablo içindeki tabloya verilen isimdir.
+	-- tabloda tüm veriler kullanılıyorsa bu rahatlıkla kullanılabilir.
+	-- INDEX BY yazılmıyor ise oracle kendisi index değeri verir. Yukarıda örneği mevcut.
+	-- örnek olarak bir record içinde bir record olabiliyordu. Bir tabloda olabilir :)
+	-- yani her recordun bir alanı farklı bir tablonun tamamı olabilir :)
 
 -- bunun constructor kullanımı var anlatılabilir.
  
@@ -633,9 +635,10 @@ END;
 ```
 
 -- konu 12.2.3 varray
--- anlat 
--- nested array den farklı olarak sabit değerli olarak array oluşturulur.
--- Sonradan extend metodu ile array boyutu genişletilebiliyor.
+
+	-- anlat 
+	-- nested array den farklı olarak sabit değerli olarak array oluşturulur.
+	-- Sonradan extend metodu ile array boyutu genişletilebiliyor.
 
 ```
 
@@ -656,45 +659,52 @@ END;
 
 -- konu 14
 -- cursors
--- SELECT sorgusu ile elde ettiğimiz veri kümesinin pointer yapısı yardımı ile erişilebilmesini sağlayan yapıdır.
--- Pointer yardımı ile küme içindeki değerleri tek tek dolaşıp erişmemizi sağlıyor.
--- NEDEN KULLANIRIZ : Bir sql çıktısındaki kayıtları tek tek dolaşıp işlem yapmak istediğimde kullanırım.
-				-- ör birinci satırdaki kayıda şunu yap ikinciyi değişkene at  bunu yap gibi işlemler..	
-				-- bir tablonun tüm verilerini tek seferde kullanmam gerekiyorsa 
-				-- cursor kullanmak dogru değildir. insert as select vb işlemler ile tüm kayıt işini halledebiliriz.
--- bir cursor scope alanına göre  bir çok plsql içerisinde ortak kullanılabiliyor.kod akışını tek cursor ile halledbiliyoruz.  
+
+	-- SELECT sorgusu ile elde ettiğimiz veri kümesinin pointer yapısı yardımı ile erişilebilmesini sağlayan yapıdır.
+	-- Pointer yardımı ile küme içindeki değerleri tek tek dolaşıp erişmemizi sağlıyor.
+	-- NEDEN KULLANIRIZ : Bir sql çıktısındaki kayıtları tek tek dolaşıp işlem yapmak istediğimde kullanırım.
+					-- ör birinci satırdaki kayıda şunu yap ikinciyi değişkene at  bunu yap gibi işlemler..	
+					-- bir tablonun tüm verilerini tek seferde kullanmam gerekiyorsa 
+					-- cursor kullanmak dogru değildir. insert as select vb işlemler ile tüm kayıt işini halledebiliriz.
+	-- bir cursor scope alanına göre  bir çok plsql içerisinde ortak kullanılabiliyor.kod akışını tek cursor ile halledbiliyoruz.  
 					
 -- 3 tip cursor vardır.
-	-- Implicit Cursor 
-	-- Explicit Cursor
-	-- Ref Cursor sonraki konularda açıklanacak.
+
+        	-- Implicit Cursor 
+		-- Explicit Cursor
+		-- Ref Cursor sonraki konularda açıklanacak.
 
 -- Implicit Cursor 
--- sql cümlesi çalıştırıldığında eğer explicit cursor yani bizim kendimizin tanımladığı cursor yoksa implicit cursor otomatik devreye girer.
--- plsql içinden sql çağırdığımızda plsql engine çalışır,sql engine çalışır ve sql engine den donen cevap plsql engine dönülür.
--- bu aradaki veri taşıma işlemini cursor ile yapıyoruz.
--- cursor bir veya birden fazla veriyi hafızada tutarak yorumlamamızı sağlar.
 
---  %ISOPEN 	--  implicit cursor da sql çalışması biter bitmez cursor kapandığı için bu değer hep false döner.
-				--  Açık olmayan bir cursor FETCH edilirse hata alınacaktır. 
-				--  Kapalı olmayan bir cursor açılmaya çalışılırsa hata alınacaktır.
-				-- Hataları almamak için cursor açık mı kapalı mı kullanıp anlayabiliriz. :)
-				
--- sql%found  -- veri varsa true    
-			  -- blok içerisinde INSERT,UPDATE,DELETE bir veya birden fazla değer etkilenirse true,
-			  -- SELECT INTO daki INTO ya değer gelirse true olur.
-			  -- bir sonraki SELECT çalıştığında o SELECT deki değerlere göre yeni değeri alınır eskisi değeri silinir.
--- sql%notfound -- veri yoksa true
+	-- sql cümlesi çalıştırıldığında eğer explicit cursor yani bizim kendimizin tanımladığı cursor yoksa implicit cursor otomatik devreye girer.
+	-- plsql içinden sql çağırdığımızda plsql engine çalışır,sql engine çalışır ve sql engine den donen cevap plsql engine dönülür.
+	-- bu aradaki veri taşıma işlemini cursor ile yapıyoruz.
+	-- cursor bir veya birden fazla veriyi hafızada tutarak yorumlamamızı sağlar.
 
--- sql%rowcount  -- veri sayısı 
-				-- FETCH etmeden sql%rowcount gözükmez. Her FETCH edildiğinde yeni kayıt çekiliyor.
-				-- Bir tablodaki tüm kayıtları çektiğimizde kullandığımız editör bir kısmını getiriyor.
-				-- Sebebi ise programlamdaki datatable işlemlerinde lazy load mantığı gibi çalışıyor olmasındandır.
-				-- OCI (oracle call interface) bu işlemiin yapılmasını sağlar.
+--
 
--- %rowtype   attribute  -- tablo veya view deki kolonun veri tipine erişmek için kullanılır.  -- employees%rowtype;
--- %type      attribute  -- bir kolonun tipine erişip kullanmak için  -- employees.last_name%type; 
 
+	--  %ISOPEN 	--  implicit cursor da sql çalışması biter bitmez cursor kapandığı için bu değer hep false döner.
+					--  Açık olmayan bir cursor FETCH edilirse hata alınacaktır. 
+					--  Kapalı olmayan bir cursor açılmaya çalışılırsa hata alınacaktır.
+					-- Hataları almamak için cursor açık mı kapalı mı kullanıp anlayabiliriz. :)
+
+	-- sql%found  -- veri varsa true    
+				  -- blok içerisinde INSERT,UPDATE,DELETE bir veya birden fazla değer etkilenirse true,
+				  -- SELECT INTO daki INTO ya değer gelirse true olur.
+				  -- bir sonraki SELECT çalıştığında o SELECT deki değerlere göre yeni değeri alınır eskisi değeri silinir.
+	-- sql%notfound -- veri yoksa true
+
+	-- sql%rowcount  -- veri sayısı 
+					-- FETCH etmeden sql%rowcount gözükmez. Her FETCH edildiğinde yeni kayıt çekiliyor.
+					-- Bir tablodaki tüm kayıtları çektiğimizde kullandığımız editör bir kısmını getiriyor.
+					-- Sebebi ise programlamdaki datatable işlemlerinde lazy load mantığı gibi çalışıyor olmasındandır.
+					-- OCI (oracle call interface) bu işlemiin yapılmasını sağlar.
+
+	-- %rowtype   attribute  -- tablo veya view deki kolonun veri tipine erişmek için kullanılır.  -- employees%rowtype;
+	-- %type      attribute  -- bir kolonun tipine erişip kullanmak için  -- employees.last_name%type; 
+
+--
 
 ```
 SELECT * FROM DEPARTMENTS;
