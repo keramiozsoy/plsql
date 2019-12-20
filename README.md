@@ -1036,6 +1036,8 @@ END;
 ```
 
 ---- iç içe anonymous block larda exception kullanımı
+
+```
 -- 
 -- bir anonymous block içerisinde bir oluşan hata,
 --  o blok içinde yazılmış hatalardan biri değil ise 
@@ -1052,6 +1054,8 @@ END;
 		--4
 		-- HATA -- Boyle bir employee kaydı yok
 		--7
+```
+çıktı
 ```
 DECLARE
 	l_emp varchar2(100);
