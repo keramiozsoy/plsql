@@ -1232,25 +1232,26 @@ END;
 -- ROLLBACK example ekle
 -- 
 -- konu 17 ve konu 18
--- fonksiyonlar ve prosedürler subprograms olarak değerlendirilirler
--- fonksiyonlar ve prosedürler anonymous block ların isim verilmiş halleri olarak karşımıza çıkar.
--- biraz karşılaştırma yapalım.
--- anonymous block 
-	-- isimsiz plsql bloklarıdır.
-	-- her çalıştırıldığında yeniden derlenir.
-	-- veritabanında saklanmaz.
-	-- diğer uygulamalardan çağırılamaz.
-	-- değer dönemezler
-	-- parametre alamazlar. 
--- fakat
--- subprograms (functions , procedures)
-	-- isimlendirilmişlerdir.
-	-- bir kez derlendikten sonra çalışmaya hazır.
-	-- veritabanında saklanır.
-	-- diğer uygulamalardan çağrılabilir.
-	-- fonksiyon tipi değer dönmek zorundadır.
-	-- parametre alabilirler
-	
+```
+	-- fonksiyonlar ve prosedürler subprograms olarak değerlendirilirler
+	-- fonksiyonlar ve prosedürler anonymous block ların isim verilmiş halleri olarak karşımıza çıkar.
+	-- biraz karşılaştırma yapalım.
+	-- anonymous block 
+		-- isimsiz plsql bloklarıdır.
+		-- her çalıştırıldığında yeniden derlenir.
+		-- veritabanında saklanmaz.
+		-- diğer uygulamalardan çağırılamaz.
+		-- değer dönemezler
+		-- parametre alamazlar. 
+	-- fakat
+	-- subprograms (functions , procedures)
+		-- isimlendirilmişlerdir.
+		-- bir kez derlendikten sonra çalışmaya hazır.
+		-- veritabanında saklanır.
+		-- diğer uygulamalardan çağrılabilir.
+		-- fonksiyon tipi değer dönmek zorundadır.
+		-- parametre alabilirler
+```	
 -- konu 17
 -- functions 
 -- function kullanırken insert update delete yazmamak lazım bu işlemleri procedure de yapmaliyiz.
