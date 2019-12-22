@@ -144,7 +144,7 @@ END isim_verdim_adi_dis_blok_olsun;
 
 into kullanımı
 
--- sorguların sonucunu alıp kullanmak için kullanırız
+-- sql sorgularının sonucunu alıp kullanmamızı sağlar
 
 plsql içinde sql çalıştırıldığında dönen değeri tutacak bir yer yoktur. Bu nedenle dönen değeri bir değişkene veya bir collection a atmalıyız ki kullanabilelim. Deneyip hatayı alalım.
 
@@ -155,10 +155,7 @@ BEGIN
 END;
 ```
 
-
-## Konu 7
-
-into kullanımı
+into kullanımına çalışan bir örnek verelim
 
 ```
 CREATE SEQUENCE testseq;
@@ -179,6 +176,9 @@ END;
 
 DROP SEQUENCE testseq;
 ```
+
+## Konu 7
+-- bu adım silinecek ve tüm numaralar düzenlenecek
 
 ## Konu 8
 
