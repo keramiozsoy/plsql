@@ -17,30 +17,29 @@ procedural language extension to structured query language
 | Konu4 | Tablodaki kolon tipine göre dinamik değişken oluşturmak |
 | Konu5 | Anonymous block nedir|
 | Konu6 | into kullanımı |
-| Konu7 | konu 6 silinecek | 
-| Konu8 | çoklu into kullanımı | 
-| Konu9 | kontrol yapıları - if else | 
-| Konu10 | kontrol yapıları |
+| Konu7 | çoklu into kullanımı | 
+| Konu8 | kontrol yapıları - if else | 
+| Konu9 | kontrol yapıları |
 | -      | sql de case when |
 | -      | sql de decode |
 | -      | plsql de case when |
-| Konu11 | döngüler |
+| Konu10 | döngüler |
 | -      |  loop  |
 | -      |  while loop |
 | -      |  for loop |
-| Konu12 | index by table |
+| Konu11 | index by table |
 | -      | record |
 | -      | index by record |
 | -      | nested table array |
-| Konu13 | context switching |
-| Konu14 | cursors |
+| Konu12 | context switching |
+| Konu13 | cursors |
 |   -    | implicit cursor |
 |   -    | explicit cursor |
 |   -    | ref cursor |
 |   -    | bulk collect |
-| Konu15 | exceptions |
-| Konu16 | procedure |
-| Konu17 | functions |
+| Konu14 | exceptions |
+| Konu15 | procedure |
+| Konu16 | functions |
 
 
 ## Konu 1
