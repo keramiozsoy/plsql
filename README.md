@@ -178,9 +178,6 @@ DROP SEQUENCE testseq;
 ```
 
 ## Konu 7
--- bu adım silinecek ve tüm numaralar düzenlenecek
-
-## Konu 8
 
 Tek kayıt veya tek alan getiren sorguların sonucunu bir değişkene atayabiliyoruz.Çok kayıt gelirse hata alırız.
 
@@ -199,7 +196,7 @@ END;
 
 ```
 
-## Konu 9
+## Konu 8
 
  kontrol yapıları
 
@@ -227,7 +224,7 @@ BEGIN
 END;
 ```
 
-## konu 10
+## konu 9
 
 -- CASE WHEN yapısı
 -- hem plsql de hemde sql de case when yapısı mevcut. 
@@ -276,7 +273,7 @@ BEGIN
 END;
 ```
 
-## konu 11
+## konu 10
 	* bir tavsiye loop içine insert update delete yazmaktan, fonksiyon çağırmaktan olabildiğince kaçmalıyız :)
 	* peki kullanmaktan kaçamadım o zaman ise döngü bir kere çalışacak şekilde tasarlamalıyız.
 	* döngü içinde döngü zaten hiç kullanmayın. 
@@ -284,12 +281,12 @@ END;
 
 
 ## döngüler
-	* 11.1 loop konusu (TERCIH EDILEN)
-	* 11.2 programlamada do..while gibi çalışır. 
-	* 11.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+	* 10.1 loop konusu (TERCIH EDILEN)
+	* 10.2 programlamada do..while gibi çalışır. 
+	* 10.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
 
 
-* 11.1
+* 10.1
 ```
 DECLARE
 	ln_result NUMBER DEFAULT 0;
@@ -305,7 +302,7 @@ BEGIN
 END;
 ```
 
-* 11.2
+* 10.2
 	 while..loop konusu (EN AZ TERCIH EDILEN)
 	 programlamada while gibi çalışır.
 
@@ -330,7 +327,7 @@ END;
 
 ```
 
-* 11.3
+* 10.3
 
 	-- for..loop konusu  (EN COK TERCIH EDILEN)
 	-- programlamada for gibi çalışır.
@@ -350,20 +347,20 @@ END;
 ```
 
 
--- konu 12
+-- konu 11
 
 	-- objectives 
 	-- karma veri tipleri
 		-- ikiye ayrılır. 
-			-- 12.1 record konusu  (tek satır)
-			-- 12.2 collection konusu (arrays - çok satır)
-				-- 12.2.1 associative arrays (index by tables)
-					-- 12.2.1.1 INDEX BY TABLE  
-					-- 12.2.1.2 INDEX BY TABLE OF RECORDS
-				-- 12.2.2 nested table
-				-- 12.2.3 varray 
+			-- 11.1 record konusu  (tek satır)
+			-- 11.2 collection konusu (arrays - çok satır)
+				-- 11.2.1 associative arrays (index by tables)
+					-- 11.2.1.1 INDEX BY TABLE  
+					-- 11.2.1.2 INDEX BY TABLE OF RECORDS
+				-- 11.2.2 nested table
+				-- 11.2.3 varray 
 
--- 12.1 - record veri tipi kulanımı
+-- 11.1 - record veri tipi kulanımı
 
 	-- tabloda bir satıra karşılık gelen değeri karşılıyoruz.
 	-- aklımızda olsun : ne zaman bir type oluşturulur hemen bir değişken oluşturup bağlamalıyız.
@@ -457,16 +454,16 @@ END;
 -- DAY 1 FINISH
 
 
--- konu 12.2.1
+-- konu 11.2.1
 
 	-- record veri tipinde tek satır tutabiliyorduk bunlarda çok satır tutabiliyoruz.
 	-- array kullanımı
 	-- bir array tanımlamak için 
 		-- iki şekildedir. 
-			-- 12.2.1.1 INDEX BY TABLE  
-			-- 12.2.1.2 INDEX BY TABLE OF RECORDS
+			-- 11.2.1.1 INDEX BY TABLE  
+			-- 11.2.1.2 INDEX BY TABLE OF RECORDS
 
--- konu 12.2.1.1
+-- konu 11.2.1.1
 -- index by table kullanımı
 
 	-- index by ile yazılan sayılar ram üzerinde saklanırlar.
@@ -545,7 +542,7 @@ BEGIN
 END;
 ```
 
--- konu 12.2.1.2
+-- konu 11.2.1.2
 -- index by table of records kullanımı
 
 -- 
@@ -609,7 +606,7 @@ BEGIN
 END;
 ```
 
--- konu 12.2.2 nested table array
+-- konu 11.2.2 nested table array
 
 	-- nested table, tablo içindeki tabloya verilen isimdir.
 	-- tabloda tüm veriler kullanılıyorsa bu rahatlıkla kullanılabilir.
@@ -635,7 +632,7 @@ END;
 
 ```
 
--- konu 12.2.3 varray
+-- konu 11.2.3 varray
 
 	-- anlat 
 	-- nested array den farklı olarak sabit değerli olarak array oluşturulur.
@@ -651,14 +648,14 @@ END;
 
 ```
 
--- konu 13 context switching
+-- konu 12 context switching
 --- anlat
 
 
 
 
 
--- konu 14
+-- konu 13
 -- cursors
 
 	-- SELECT sorgusu ile elde ettiğimiz veri kümesinin pointer yapısı yardımı ile erişilebilmesini sağlayan yapıdır.
@@ -943,7 +940,7 @@ END;
 
 
 
--- konu 15
+-- konu 14
 -- exceptions
 
 -- anonymous block içerisindeki iş mantığında bir hata oldu. Bu hatayı yakaladık ve konsola çıktı olarak verdik.
@@ -1228,10 +1225,10 @@ END;
 
 
 
--- konu 16
+-- konu 15
 -- ROLLBACK example ekle
 -- 
--- konu 17 ve konu 18
+-- konu 16 ve konu 17
 ```
 	-- fonksiyonlar ve prosedürler subprograms olarak değerlendirilirler
 	-- fonksiyonlar ve prosedürler anonymous block ların isim verilmiş halleri olarak karşımıza çıkar.
@@ -1252,7 +1249,7 @@ END;
 		-- fonksiyon tipi değer dönmek zorundadır.
 		-- parametre alabilirler
 ```	
--- konu 17
+-- konu 18
 -- functions 
 -- function kullanırken insert update delete yazmamak lazım bu işlemleri procedure de yapmaliyiz.
 ```
@@ -1302,7 +1299,7 @@ BEGIN
 END;
 ```
 
-# 18 procedure 
+# 17 procedure 
 
 -- procedure kullanımı
 -- PROCEDURE bir OBJECT tipidir.
