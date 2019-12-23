@@ -242,18 +242,6 @@ SELECT e.employee_id,
   END case_kolonu
 FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
 ```
--- sql de decode
--- sadece sql de kullanıllr plsql de kullanılmaz. case when daha hızlı ve performanslıdır.
--- sadece eşitir işlemi yapılabilir ,büyük küçük gibi karşılaştırmalar yapılamaz.
-```
-SELECT e.employee_id,
-  DECODE( e.first_name ,
-        'Steven' , 'user is GOOD' ,
-       	 'Neena' , 'user is BAD..' , 
-       	 'Lex' , 'user is AWESOME..',
-       	 'user UNKNOWN' ) case_kolonu
-FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
-```
 
 plsql de case when
 
@@ -277,6 +265,24 @@ BEGIN
 	dbms_output.put_line(lv_result);
 END;
 ```
+
+
+sql de decode yapısı
+
+sadece sql de kullanılır plsql de kullanılmaz. case when daha hızlı ve performanslıdır.
+sadece eşitir işlemi yapılabilir ,büyük küçük gibi karşılaştırmalar yapılamaz.
+
+```
+SELECT e.employee_id,
+  DECODE( e.first_name ,
+        'Steven' , 'user is GOOD' ,
+       	 'Neena' , 'user is BAD..' , 
+       	 'Lex' , 'user is AWESOME..',
+       	 'user UNKNOWN' ) case_kolonu
+FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
+```
+
+
 
 ## konu 10
 	* bir tavsiye loop içine insert update delete yazmaktan, fonksiyon çağırmaktan olabildiğince kaçmalıyız :)
