@@ -225,9 +225,13 @@ END;
 
 ## konu 9
 
--- CASE WHEN yapısı
--- hem plsql de hemde sql de case when yapısı mevcut. 
--- sql de case when
+CASE WHEN yapısı
+
+hem plsql de hemde sql de case when yapısı mevcuttur.
+
+
+sql de case when
+
 ```
 SELECT e.employee_id,
   CASE e.first_name 
@@ -251,7 +255,9 @@ SELECT e.employee_id,
 FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
 ```
 
--- plsql de case when
+plsql de case when
+
+
 ```
 DECLARE
 	ln_job_count NUMBER ;
