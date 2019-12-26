@@ -9,41 +9,41 @@ procedural language extension to structured query language
 ```
 
 
-| Konu | Açıklama |
-| --- | --- |
-| Konu1 | Hazırlık |
-| Konu2 | Değişken tanımlama ve ekrana yazdırma |
-| Konu3 | Değişken isimlendirme standartı |
-| Konu4 | Tablodaki kolon tipine göre dinamik değişken oluşturmak |
-| Konu5 | Anonymous block nedir|
-| Konu6 | into kullanımı |
-| Konu7 | çoklu into kullanımı | 
-| Konu8 | kontrol yapıları - if else | 
-| Konu9 | kontrol yapıları |
-| -      | sql de case when |
-| -      | sql de decode |
-| -      | plsql de case when |
-| Konu10 | döngüler |
-| -      |  loop  |
-| -      |  while loop |
-| -      |  for loop |
-| Konu11 | objectives |
-| -      | record |
-| -      | collection |
-| -      | - | associative arrays |
-| -      | - | - | index by table |
+| Konu | Açıklama | - |- |
+| --- | --- | - | - |
+| Konu1 | Hazırlık | - |- |
+| Konu2 | Değişken tanımlama ve ekrana yazdırma | - |- |
+| Konu3 | Değişken isimlendirme standartı |- |- |
+| Konu4 | Tablodaki kolon tipine göre dinamik değişken oluşturmak |- |- |
+| Konu5 | Anonymous block nedir|- |- |
+| Konu6 | into kullanımı |- |- |
+| Konu7 | çoklu into kullanımı | - |- |
+| Konu8 | kontrol yapıları - if else | - |- |
+| Konu9 | kontrol yapıları |- |- |
+| -      | sql de case when |- |- |
+| -      | sql de decode |- |- |
+| -      | plsql de case when |- |- |
+| Konu10 | döngüler |- |- |
+| -      |  loop  |- |- |
+| -      |  while loop |- |- |
+| -      |  for loop |- |- |
+| Konu11 | objectives |- |- |
+| -      | record |- |- |
+| -      | collection |- |- |
+| -      | - | associative arrays |- |
+| -      | - | - | index by table |- |
 | -      | - | - | index by table of records|
-| -      | - | nested tables |
-| -      | - | varray |
-| Konu12 | context switching |
-| Konu13 | cursors |
-|   -    | implicit cursor |
-|   -    | explicit cursor |
-|   -    | ref cursor |
-|   -    | bulk collect |
-| Konu14 | exceptions |
-| Konu15 | procedure |
-| Konu16 | functions |
+| -      | - | nested tables |- |
+| -      | - | varray |- |
+| Konu12 | context switching |- |- |- |
+| Konu13 | cursors |- |
+|   -    | implicit cursor |- |- |
+|   -    | explicit cursor |- |- |
+|   -    | ref cursor |- |- |
+|   -    | bulk collect |- |- |
+| Konu14 | exceptions |- |- |- |
+| Konu15 | procedure |- |- |- |
+| Konu16 | functions |- |- |- |
 
 
 ## Konu 1
