@@ -665,6 +665,7 @@ END;
 
 -- konu 12 context switching
 --- anlat
+-- plsql ve sql motorları arasındaki ilişki açıklanacak
 
 
 
@@ -1354,7 +1355,7 @@ CALL HR.PRC_HELLO();
 SET serveroutput ON; 
 EXECUTE HR.PRC_HELLO();
 
-```
+co```
 --veya 
 ```
 EXEC HR.PRC_HELLO();
