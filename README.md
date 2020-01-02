@@ -42,6 +42,7 @@ procedural language extension to structured query language
 |   -    | ref cursor |- |- |
 |   -    | bulk collect |- |- |
 | Konu14 | exceptions |- |- |- |
+| - | - |pragma |- |- |
 | Konu15 | procedure |- |- |- |
 | Konu16 | functions |- |- |- |
 
