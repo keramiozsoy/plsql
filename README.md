@@ -18,7 +18,7 @@ procedural language extension to structured query language
 | Konu5 | Anonymous block nedir|- |- |
 | Konu6 | into kullanımı |- |- |
 | Konu7 | çoklu into kullanımı | - |- |
-| Konu8 | kontrol yapıları - | - |- |
+| Konu8 | kontrol yapıları  | - |- |
 | -      | if else |- |- |
 | -      | sql de case when |- |- |
 | -      | sql de decode |- |- |
