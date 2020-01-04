@@ -18,16 +18,16 @@ procedural language extension to structured query language
 | Konu5 | Anonymous block nedir|- |- |
 | Konu6 | into kullanımı |- |- |
 | Konu7 | çoklu into kullanımı | - |- |
-| Konu8 | kontrol yapıları - if else | - |- |
-| Konu9 | kontrol yapıları |- |- |
+| Konu8 | kontrol yapıları - | - |- |
+| -      | if else |- |- |
 | -      | sql de case when |- |- |
 | -      | sql de decode |- |- |
 | -      | plsql de case when |- |- |
-| Konu10 | döngüler |- |- |
+| Konu9 | döngüler |- |- |
 | -      |  loop  |- |- |
 | -      |  while loop |- |- |
 | -      |  for loop |- |- |
-| Konu11 | objectives |- |- |
+| Konu10 | objectives |- |- |
 | -      | record |- |- |
 | -      | collection |- |- |
 | -      | - | associative arrays |- |
@@ -35,16 +35,16 @@ procedural language extension to structured query language
 | -      | - | - | index by table of records|
 | -      | - | nested tables |- |
 | -      | - | varray |- |
-| Konu12 | context switching |- |- |- |
-| Konu13 | cursors |- |
+| Konu11 | context switching |- |- |- |
+| Konu12 | cursors |- |
 |   -    | implicit cursor |- |- |
 |   -    | explicit cursor |- |- |
 |   -    | ref cursor |- |- |
 |   -    | bulk collect |- |- |
-| Konu14 | exceptions |- |- |- |
+| Konu13 | exceptions |- |- |- |
 | - | - |pragma |- |- |
-| Konu15 | procedure |- |- |- |
-| Konu16 | functions |- |- |- |
+| Konu14 | procedure |- |- |- |
+| Konu15 | functions |- |- |- |
 
 
 ## Konu 1
@@ -148,9 +148,7 @@ END isim_verdim_adi_dis_blok_olsun;
 
 into kullanımı
 
--- sql sorgularının sonucunu alıp kullanmamızı sağlar
-
-plsql içinde sql çalıştırıldığında dönen değeri tutacak bir yer yoktur. Bu nedenle dönen değeri bir değişkene veya bir collection a atmalıyız ki kullanabilelim. Deneyip hatayı alalım.
+plsql içinde sql çalıştırıldığında dönen değeri tutacak bir yer yoktur. Bu nedenle dönen değeri bir değişkene veya bir collection a atmalıyız ki kullanabilelim. into kullanılmayan bir örnek verelim. Deneyip hatayı alalım.
 
 
 ```
@@ -159,6 +157,7 @@ BEGIN
 END;
 ```
 
+into, sql sorgularının sonucunu alıp kullanmamızı sağlar. 
 into kullanımına çalışan bir örnek verelim
 
 ```
@@ -228,8 +227,6 @@ BEGIN
 END;
 ```
 
-## konu 9
-
 CASE WHEN yapısı
 
 hem plsql de hemde sql de case when yapısı mevcuttur.
@@ -289,7 +286,7 @@ FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
 
 
 
-## konu 10
+## konu 9
 	* bir tavsiye loop içine insert update delete yazmaktan, fonksiyon çağırmaktan olabildiğince kaçmalıyız :)
 	* peki kullanmaktan kaçamadım o zaman ise döngü bir kere çalışacak şekilde tasarlamalıyız.
 	* döngü içinde döngü zaten hiç kullanmayın. 
@@ -302,7 +299,7 @@ FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
 	* 10.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
 
 
-* 10.1
+* 9.1
 ```
 DECLARE
 	ln_result NUMBER DEFAULT 0;
@@ -318,7 +315,7 @@ BEGIN
 END;
 ```
 
-* 10.2
+* 9.2
 	 while..loop konusu (EN AZ TERCIH EDILEN)
 	 programlamada while gibi çalışır.
 
@@ -343,7 +340,7 @@ END;
 
 ```
 
-* 10.3
+* 9.3
 
 	-- for..loop konusu  (EN COK TERCIH EDILEN)
 	-- programlamada for gibi çalışır.
@@ -363,7 +360,7 @@ END;
 ```
 
 
--- konu 11
+-- konu 10
 
 	-- objectives 
 	-- karma veri tipleri
@@ -376,7 +373,7 @@ END;
 				-- 11.2.2 nested table
 				-- 11.2.3 varray 
 
--- 11.1 - record veri tipi kulanımı
+-- 10.1 - record veri tipi kulanımı
 
 	-- tabloda bir satıra karşılık gelen değeri karşılıyoruz.
 	-- aklımızda olsun : ne zaman bir type oluşturulur hemen bir değişken oluşturup bağlamalıyız.
@@ -407,7 +404,7 @@ BEGIN
 END;
 ```
 
---sorgudan gelen bir satıra karşılık gelen değeri karşılıyoruz.
+-- sorgudan gelen bir satıra karşılık gelen değeri karşılıyoruz.
 
 ```
 DECLARE
@@ -470,16 +467,16 @@ END;
 -- DAY 1 FINISH
 
 
--- konu 11.2.1
+-- konu 10.2.1
 
 	-- record veri tipinde tek satır tutabiliyorduk bunlarda çok satır tutabiliyoruz.
 	-- array kullanımı
 	-- bir array tanımlamak için 
 		-- iki şekildedir. 
-			-- 11.2.1.1 INDEX BY TABLE  
-			-- 11.2.1.2 INDEX BY TABLE OF RECORDS
+			-- 10.2.1.1 INDEX BY TABLE  
+			-- 10.2.1.2 INDEX BY TABLE OF RECORDS
 
--- konu 11.2.1.1
+-- konu 10.2.1.1
 -- index by table kullanımı
 
 	-- index by ile yazılan sayılar ram üzerinde saklanırlar.
@@ -558,7 +555,7 @@ BEGIN
 END;
 ```
 
--- konu 11.2.1.2
+-- konu 10.2.1.2
 -- index by table of records kullanımı
 
 -- 
@@ -648,7 +645,7 @@ END;
 
 ```
 
--- konu 11.2.3 varray
+-- konu 10.2.3 varray
 
 	-- anlat 
 	-- nested array den farklı olarak sabit değerli olarak array oluşturulur.
@@ -664,7 +661,7 @@ END;
 
 ```
 
--- konu 12 context switching
+-- konu 11 context switching
 --- anlat
 -- plsql ve sql motorları arasındaki ilişki açıklanacak
 
@@ -672,7 +669,7 @@ END;
 
 
 
--- konu 13
+-- konu 12
 -- cursors
 
 	-- SELECT sorgusu ile elde ettiğimiz veri kümesinin pointer yapısı yardımı ile erişilebilmesini sağlayan yapıdır.
@@ -957,7 +954,7 @@ END;
 
 
 
--- konu 14
+-- konu 13
 -- exceptions
 
 -- anonymous block içerisindeki iş mantığında bir hata oldu. Bu hatayı yakaladık ve konsola çıktı olarak verdik.
@@ -1242,10 +1239,10 @@ END;
 
 
 
--- konu 15
+-- konu 14
 -- ROLLBACK example ekle
 -- 
--- konu 16 ve konu 17
+-- konu 15 ve konu 16
 ```
 	-- fonksiyonlar ve prosedürler subprograms olarak değerlendirilirler
 	-- fonksiyonlar ve prosedürler anonymous block ların isim verilmiş halleri olarak karşımıza çıkar.
@@ -1266,7 +1263,7 @@ END;
 		-- fonksiyon tipi değer dönmek zorundadır.
 		-- parametre alabilirler
 ```	
--- konu 18
+-- konu 17
 -- functions 
 -- function kullanırken insert update delete yazmamak lazım bu işlemleri procedure de yapmaliyiz.
 ```
@@ -1316,7 +1313,7 @@ BEGIN
 END;
 ```
 
-# 17 procedure 
+# 18 procedure 
 
 -- procedure kullanımı
 -- PROCEDURE bir OBJECT tipidir.
