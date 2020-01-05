@@ -316,8 +316,8 @@ END;
 ```
 
 * 9.2
-	 while..loop konusu (EN AZ TERCIH EDILEN)
-	 programlamada while gibi çalışır.
+
+while..loop konusu (EN AZ TERCIH EDILEN) programlamada while gibi çalışır.
 
 ```
 DECLARE
@@ -342,8 +342,7 @@ END;
 
 * 9.3
 
-	-- for..loop konusu  (EN COK TERCIH EDILEN)
-	-- programlamada for gibi çalışır.
+ for..loop konusu  (EN COK TERCIH EDILEN) . programlamada for gibi çalışır.
 ```	
 DECLARE
 	ln_result NUMBER DEFAULT 0;
