@@ -557,13 +557,11 @@ END;
 -- konu 10.2.1.2
 -- index by table of records kullanımı
 
--- 
 
--- önceki örneklerde array in tipi 
--- belirli bir alan NUMBER,VARCHAR gibi 
--- tablodan referans olan bir alan record employees.employee_id%type
--- veya tablonun bir satırını karşılayan  record employees%rowtype 
--- olabiliyordu.
+
+Önceki örneklerde array in tipi  belirli bir alan NUMBER,VARCHAR gibi  tablodan referans olan bir alan record employees.employee_id%type
+veya tablonun bir satırını karşılayan  record 
+employees%rowtype olabiliyordu.
 
 --
  
