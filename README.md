@@ -359,7 +359,7 @@ END;
 ```
 
 
--- konu 10
+## konu 10
 
 	-- objectives 
 	-- karma veri tipleri
