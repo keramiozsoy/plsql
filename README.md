@@ -1101,7 +1101,9 @@ BEGIN
 	dbms_output.put_line('7');
 END;
 ```
+
 --- exception raise kullanımı
+
 -- bu kullanım ile kodun akışını istediğimizde kırarız. 
 -- beklediğim bir istisna durumunu kendim oluşturmuş oluyorum.
 -- programada throw Exception(); gibi.
