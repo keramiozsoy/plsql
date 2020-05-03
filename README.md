@@ -294,9 +294,9 @@ FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
 
 
 ## döngüler
-	* 10.1 loop konusu (TERCIH EDILEN)
-	* 10.2 programlamada do..while gibi çalışır. 
-	* 10.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
+	* 9.1 loop konusu (TERCIH EDILEN)
+	* 9.2 programlamada do..while gibi çalışır. 
+	* 9.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
 
 
 * 9.1
