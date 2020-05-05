@@ -54,7 +54,7 @@ sql bir dil değil motordur. veri manipulasyonu yapılır.
 plsql bir dildir. uygulamalar geliştirilir.
 sql ifadelerimiz sql motoruna plsql ifadelerimiz plsql motoruna gönderilerek çalıştırılır.
 
-bu blok çalıştıktan sonra hiç bir yerde saklanmaz.
+Aşağıdaki kod bloğu çalıştıktan sonra hiç bir yerde saklanmaz.
 plsql çıktısını görmek için aşağıdaki komutunu vermeliyiz. Ardından çıktı gösteren bir block yazalım.
 ```
 SET serveroutput ON;
