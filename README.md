@@ -833,6 +833,7 @@ END;
 
  
  -- cursor dan tüm tablodaki veriyi alabilmek.
+ 
  -- loop
  
  ```
