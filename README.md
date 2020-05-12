@@ -1264,6 +1264,7 @@ END;
 		-- parametre alabilirler
 ```	
 -- konu 17
+
 -- functions 
 -- function kullanırken insert update delete yazmamak lazım bu işlemleri procedure de yapmaliyiz.
 ```
