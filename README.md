@@ -1176,11 +1176,14 @@ END;
 
 
 -- kodun akışını kırmak ve programın o hata sonrasında durmasını istiyorum. 
+
 -- iç içe olan anonymous block ların içlerinde
+
 --  exception when then mekanizması yazmak yerine en dıştakine hepsini yakalayabiliriz.
 
 
 -- exception pragma
+
 -- oluşmasını beklediğimiz bir istisnanın istediğimz bir hata kodu ile eşleştirilmesidir.
 -- PRAGMA EXCEPTION_INIT ile oluşturuyoruz.
 -- hatayı yakaladıktan sonra uygulamamız kaldığı yerden devam ediyor.
