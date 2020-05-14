@@ -1212,8 +1212,9 @@ BEGIN
 		dbms_output.put_line('HATA OLUSTUKTAN SONRA YAKALANDI VE BURADAN DEVAM ETTI ');
 END;
 ```
---
+
 -- raise application error
+
 -- PRAGMA EXCEPTION_INIT ile var olan bir kodu vermek istediğimiz isim ile eşleştiriyorduk.
 -- Fakat burada belirlediğimiz hata mesajlarını oracle tarafından
 --  belirlenen -20000 ile -21000 arasınaki sayılarına atama yaparak kullanabiliriz.
