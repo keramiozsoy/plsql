@@ -658,7 +658,7 @@ END;
 
 ```
 
--- konu 11 context switching
+## konu 11 context switching
 --- anlat
 -- plsql ve sql motorları arasındaki ilişki açıklanacak
 
@@ -952,7 +952,8 @@ END;
 
 
 
--- konu 13
+## konu 13
+
 -- exceptions
 
 -- anonymous block içerisindeki iş mantığında bir hata oldu. Bu hatayı yakaladık ve konsola çıktı olarak verdik.
@@ -1243,10 +1244,12 @@ END;
 
 
 
--- konu 14
+## konu 14
 -- ROLLBACK example ekle
 -- 
--- konu 15 ve konu 16
+
+## konu 15 ve konu 16
+
 ```
 	-- fonksiyonlar ve prosedürler subprograms olarak değerlendirilirler
 	-- fonksiyonlar ve prosedürler anonymous block ların isim verilmiş halleri olarak karşımıza çıkar.
@@ -1267,7 +1270,8 @@ END;
 		-- fonksiyon tipi değer dönmek zorundadır.
 		-- parametre alabilirler
 ```	
--- konu 17
+
+## konu 17
 
 -- functions 
 -- function kullanırken insert update delete yazmamak lazım bu işlemleri procedure de yapmaliyiz.
