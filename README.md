@@ -667,7 +667,7 @@ END;
 
 
 
--- konu 12
+## konu 12
 -- cursors
 
 	-- SELECT sorgusu ile elde ettiğimiz veri kümesinin pointer yapısı yardımı ile erişilebilmesini sağlayan yapıdır.
