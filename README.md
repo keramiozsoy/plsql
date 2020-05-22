@@ -898,8 +898,10 @@ END;
 
 ```
 
--- select for update
--- tabloyu değil sadece kayıtları kilitler
+-- select for update kullanımı
+
+ tabloyu değil sadece kayıtları kilitler
+ 
 ```
 
 SELECT * FROM DEPARTMENTS FOR UPDATE;--WAIT 5  bekle
