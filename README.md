@@ -294,7 +294,6 @@ FROM EMPLOYEES e ORDER BY e.EMPLOYEE_ID;
 	* bir veriyi doldurmak istiyorsak mutlaka sql ile doldurmalıyız loop ile döngü doldurulursa performans kaybıdır.
 
 
-## döngüler
 	* 9.1 loop konusu (TERCIH EDILEN)
 	* 9.2 programlamada do..while gibi çalışır. 
 	* 9.3 loop içinde sql yazılmaz... yazılabilir fakat best practice değildir.
