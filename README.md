@@ -959,6 +959,7 @@ END;
 -- exceptions
 
 -- anonymous block içerisindeki iş mantığında bir hata oldu. Bu hatayı yakaladık ve konsola çıktı olarak verdik.
+
 -- exception kısmını yazmadığımız zaman ki halini deyenip görebilirsiniz :)
 
 ```
