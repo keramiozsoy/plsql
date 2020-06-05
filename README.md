@@ -364,13 +364,13 @@ END;
 	-- objectives 
 	-- karma veri tipleri
 		-- ikiye ayrılır. 
-			-- 11.1 record konusu  (tek satır)
-			-- 11.2 collection konusu (arrays - çok satır)
-				-- 11.2.1 associative arrays (index by tables)
-					-- 11.2.1.1 INDEX BY TABLE  
-					-- 11.2.1.2 INDEX BY TABLE OF RECORDS
-				-- 11.2.2 nested table
-				-- 11.2.3 varray 
+			-- 10.1 record konusu  (tek satır)
+			-- 10.2 collection konusu (arrays - çok satır)
+				-- 10.2.1 associative arrays (index by tables)
+					-- 10.2.1.1 INDEX BY TABLE  
+					-- 10.2.1.2 INDEX BY TABLE OF RECORDS
+				-- 10.2.2 nested table
+				-- 10.2.3 varray 
 
 -- 10.1 - record veri tipi kulanımı
 
