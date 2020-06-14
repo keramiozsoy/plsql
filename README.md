@@ -908,6 +908,7 @@ SELECT * FROM DEPARTMENTS FOR UPDATE;--WAIT 5  bekle
 ```
 
 -- cursor where current of kullanımı
+
 ```
 
 DECLARE
@@ -1012,6 +1013,7 @@ END;
 ```
 
 -- iç içe anonymous block kullanarak bir önceki problemi çözmüyoruz fakat kodun kırılmasını engelliyebiliyoruz.
+
 -- KONTROL 3 bölümü çalıştırılabiliyor. Çünkü iç içe anonymous block kullandık.
 
 ```
@@ -1191,6 +1193,7 @@ END;
 -- oluşmasını beklediğimiz bir istisnanın istediğimz bir hata kodu ile eşleştirilmesidir.
 -- PRAGMA EXCEPTION_INIT ile oluşturuyoruz.
 -- hatayı yakaladıktan sonra uygulamamız kaldığı yerden devam ediyor.
+
 ```
 DECLARE
 	e_ora_60 EXCEPTION;
@@ -1300,15 +1303,20 @@ BEGIN
 END;
 
 ```
---
-```
+
 
 SELECT 	*
 FROM user_objects
 WHERE
 	object_name
 LIKE '%f_get_employee_info%';
+
+```
+
 --
+
+```
+
 DECLARE
 	l_result_info varchar2(20);
 BEGIN
@@ -1323,6 +1331,7 @@ BEGIN
 	dbms_output.put_line(l_result_info);
 
 END;
+
 ```
 
 # 18 procedure 
