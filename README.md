@@ -1,3 +1,26 @@
+<!-- MarkdownTOC autolink=true -->
+
+- [plsql](#plsql)
+	- [Konu 1](#konu-1)
+	- [Konu 2](#konu-2)
+	- [Konu 3](#konu-3)
+	- [Konu 4](#konu-4)
+	- [Konu 5](#konu-5)
+	- [Konu 6](#konu-6)
+	- [Konu 7](#konu-7)
+	- [Konu 8](#konu-8)
+	- [konu 9](#konu-9)
+	- [konu 10](#konu-10)
+	- [konu 11 context switching](#konu-11-context-switching)
+	- [konu 12](#konu-12)
+	- [konu 13](#konu-13)
+	- [konu 14](#konu-14)
+	- [konu 15 ve konu 16](#konu-15-ve-konu-16)
+	- [konu 17](#konu-17)
+	- [konu 18](#konu-18)
+
+<!-- /MarkdownTOC -->
+
 # plsql
 
 plsql öğrenmeye çalışalım 
@@ -1223,8 +1246,11 @@ END;
 -- raise application error
 
 -- PRAGMA EXCEPTION_INIT ile var olan bir kodu vermek istediğimiz isim ile eşleştiriyorduk.
+
 -- Fakat burada belirlediğimiz hata mesajlarını oracle tarafından
+
 --  belirlenen -20000 ile -21000 arasınaki sayılarına atama yaparak kullanabiliriz.
+
 -- anonymous block içinden bu bloğu çağıran uygulamaya hata dönülmesi sağlanır. 
 
 ```
@@ -1336,7 +1362,7 @@ END;
 
 ```
 
-# 18 procedure 
+## konu 18
 
 -- procedure kullanımı
 -- PROCEDURE bir OBJECT tipidir.
@@ -1359,7 +1385,7 @@ BEGIN
 END;
 /
 ```
---
+
 ```
 BEGIN
 	HR.PRC_HELLO();
